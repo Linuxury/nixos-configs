@@ -46,7 +46,7 @@
   programs.fish.enable = true;
   users.defaultUserShell = pkgs.fish;
 
-  # Global fonts — available to all users on all machines
+  # Global fonts — basic set (Nerd Fonts removed for now)
   fonts.packages = with pkgs; [
     noto-fonts
     noto-fonts-cjk-sans
@@ -54,54 +54,6 @@
     liberation_ttf
     fira-code
     fira-code-symbols
-
-    # Large curated Nerd Fonts set (most popular — global for all users)
-    # Easy to add more names from https://search.nixos.org/packages?channel=unstable&query=nerd-fonts
-    (nerdfonts.override { fonts = [
-      "FiraCode"
-      "JetBrainsMono"
-      "Hack"
-      "Iosevka"
-      "Meslo"
-      "Ubuntu"
-      "RobotoMono"
-      "SourceCodePro"
-      "Mononoki"
-      "Terminus"
-      "DroidSansMono"
-      "DejaVuSansMono"
-      "NerdFontsSymbolsOnly"
-      "0xProto"
-      "Agave"
-      "AnonymousPro"
-      "Arimo"
-      "AurulentSansMono"
-      "BigBlueTerminal"
-      "BitstreamVeraSansMono"
-      "CodeNewRoman"
-      "ComicShannsMono"
-      "Cousine"
-      "DaddyTimeMono"
-      "Go-Mono"
-      "Gohu"
-      "HeavyData"
-      "Hermit"
-      "Inconsolata"
-      "InconsolataGo"
-      "InconsolataLGC"
-      "IntelOneMono"
-      "Lekton"
-      "LiberationMono"
-      "Lilex"
-      "MartianMono"
-      "OpenDyslexic"
-      "Overpass"
-      "ProggyClean"
-      "SpaceMono"
-      "Tinos"
-      "VictorMono"
-      "ZedMono"
-    ]; })
   ];
 
   system.stateVersion = "25.11";
