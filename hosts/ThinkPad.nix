@@ -5,16 +5,16 @@
     ../modules/default.nix
     ../modules/cosmic.nix
     ../modules/snapper.nix
+    ../modules/laptop.nix   # ← NEW: power management
   ];
 
   networking.hostName = "ThinkPad";
 
-  # Only your user on this machine
   users.users.linuxury = {
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" ];
-    initialPassword = "changeme123";  # CHANGE SOON
+    initialPassword = "changeme123";
   };
 
-  security.sudo.wheelNeedsPassword = false;  # temporary
+  security.sudo.wheelNeedsPassword = false;
 }
