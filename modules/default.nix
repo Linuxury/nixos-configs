@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ pkgs, ... }:
 
 {
   imports = [
@@ -54,7 +54,60 @@
     liberation_ttf
     fira-code
     fira-code-symbols
-  ] ++ (builtins.attrValues pkgs.nerd-fonts);  # All Nerd Fonts automatically
+
+    # Large curated Nerd Fonts set (most popular and useful — easy to add more names)
+    # Find more names at https://github.com/NixOS/nixpkgs/blob/nixos-unstable/pkgs/data/fonts/nerd-fonts/manifests/fonts.json
+    (nerdfonts.override { fonts = [
+      "FiraCode"
+      "JetBrainsMono"
+      "Hack"
+      "Iosevka"
+      "Meslo"
+      "Ubuntu"
+      "RobotoMono"
+      "SourceCodePro"
+      "Mononoki"
+      "CascadiaCode"
+      "Terminus"
+      "DroidSansMono"
+      "DejaVuSansMono"
+      "NerdFontsSymbolsOnly"
+      "0xProto"
+      "Agave"
+      "AnonymousPro"
+      "Arimo"
+      "AurulentSansMono"
+      "BigBlueTerminal"
+      "BitstreamVeraSansMono"
+      "Bleach"
+      "CodeNewRoman"
+      "ComicShannsMono"
+      "Cousine"
+      "DaddyTimeMono"
+      "DejaVuSansMono"
+      "Go-Mono"
+      "Gohu"
+      "HeavyData"
+      "Hermit"
+      "Inconsolata"
+      "InconsolataGo"
+      "InconsolataLGC"
+      "IntelOneMono"
+      "Lekton"
+      "LiberationMono"
+      "Lilex"
+      "MartianMono"
+      "Moralerspace"
+      "OpenDyslexic"
+      "Overpass"
+      "ProggyClean"
+      "SpaceMono"
+      "Tinos"
+      "VictorMono"
+      "ZedMono"
+      # Add more names here if needed (no rebuild needed until you add)
+    ]; })
+  ];
 
   system.stateVersion = "25.11";
 }
