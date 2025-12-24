@@ -16,4 +16,12 @@
     alsa.support32Bit = true;
     pulse.enable = true;
   };
+
+  # COSMIC Store (App Store for COSMIC apps/Flatpaks)
+  environment.systemPackages = with pkgs; [
+    cosmic-store
+  ];
+
+  # Flatpak support — required for COSMIC Store to manage Flatpaks
+  services.flatpak.enable = true;
 }
