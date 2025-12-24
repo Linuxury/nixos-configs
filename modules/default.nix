@@ -45,5 +45,30 @@
   programs.fish.enable = true;
   users.defaultUserShell = pkgs.fish;
 
+  # Global fonts — available to all users on all machines
+  fonts.packages = with pkgs; [
+    noto-fonts
+    noto-fonts-cjk-sans
+    noto-fonts-color-emoji
+    liberation_ttf
+    fira-code
+    fira-code-symbols
+
+    # Curated Nerd Fonts — best for terminals, icons, dev work
+    # Easy to add more: just add to this list
+    (nerdfonts.override { fonts = [
+      "FiraCode"
+      "JetBrainsMono"
+      "Hack"
+      "Iosevka"
+      "CascadiaCode"
+      "Meslo"
+      "Ubuntu"
+      "RobotoMono"
+      "SourceCodePro"
+      "Mononoki"
+    ]; })
+  ];
+
   system.stateVersion = "25.11";
 }
