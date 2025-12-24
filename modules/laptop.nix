@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 {
   # TLP — advanced power management
@@ -19,8 +19,8 @@
       CPU_MIN_PERF_ON_BAT = 0;
       CPU_MAX_PERF_ON_BAT = 60;
 
-      START_CHARGE_THRESH_BAT0 = 75;  # Start charging when below 75%
-      STOP_CHARGE_THRESH_BAT0 = 80;   # Stop charging at 80% (battery health)
+      START_CHARGE_THRESH_BAT0 = 75;
+      STOP_CHARGE_THRESH_BAT0 = 80;
 
       RUNTIME_PM_ON_AC = "on";
       RUNTIME_PM_ON_BAT = "auto";
@@ -29,7 +29,10 @@
     };
   };
 
-  # Thermald — prevent CPU overheating
+  # Force disable power-profiles-daemon (conflicts with TLP)
+  services.power-profiles-daemon.enable = lib.mkForce false;
+
+  # Thermald — prevent overheating
   services.thermald.enable = true;
 
   # Auto-suspend on lid close
@@ -44,7 +47,7 @@
 
   # Extra laptop tools
   environment.systemPackages = with pkgs; [
-    acpi           # Battery info
-    powertop       # Power analysis
+    acpi
+    powertop
   ];
 }
