@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 {
   imports = [
@@ -10,7 +10,7 @@
 
   networking.networkmanager.enable = true;
 
-  time.timeZone = "America/New_York";  # Your timezone
+  time.timeZone = "America/New_York";
 
   i18n.defaultLocale = "en_US.UTF-8";
   console.keyMap = "us";
@@ -55,19 +55,11 @@
     fira-code
     fira-code-symbols
 
-    # Curated valid Nerd Fonts (global, lightweight)
-    # Easy to add more: search.nixos.org/packages for "nerd-fonts."
-    nerd-fonts.fira-code
-    nerd-fonts.jetbrains-mono
-    nerd-fonts.hack
-    nerd-fonts.iosevka
-    nerd-fonts.meslo
-    nerd-fonts.ubuntu
-    nerd-fonts.roboto-mono
-    nerd-fonts.source-code-pro
-    nerd-fonts.mononoki
-    # Example future additions: nerd-fonts.terminus, nerd-fonts.droid-sans-mono
-  ];
+    # All available Nerd Fonts (automatic — no one-by-one listing needed)
+    # This pulls every valid individual Nerd Font package
+  ] ++ (builtins.attrValues pkgs.nerd-fonts);
+};
 
   system.stateVersion = "25.11";
 }
+
