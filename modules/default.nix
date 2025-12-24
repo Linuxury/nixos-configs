@@ -55,8 +55,8 @@
     fira-code
     fira-code-symbols
 
-    # Large curated Nerd Fonts set (most popular and useful — easy to add more names)
-    # Find more names at https://github.com/NixOS/nixpkgs/blob/nixos-unstable/pkgs/data/fonts/nerd-fonts/manifests/fonts.json
+    # Large curated Nerd Fonts set (most popular — global for all users)
+    # Easy to add more names from https://search.nixos.org/packages?channel=unstable&query=nerd-fonts
     (nerdfonts.override { fonts = [
       "FiraCode"
       "JetBrainsMono"
@@ -67,7 +67,6 @@
       "RobotoMono"
       "SourceCodePro"
       "Mononoki"
-      "CascadiaCode"
       "Terminus"
       "DroidSansMono"
       "DejaVuSansMono"
@@ -79,12 +78,10 @@
       "AurulentSansMono"
       "BigBlueTerminal"
       "BitstreamVeraSansMono"
-      "Bleach"
       "CodeNewRoman"
       "ComicShannsMono"
       "Cousine"
       "DaddyTimeMono"
-      "DejaVuSansMono"
       "Go-Mono"
       "Gohu"
       "HeavyData"
@@ -97,7 +94,6 @@
       "LiberationMono"
       "Lilex"
       "MartianMono"
-      "Moralerspace"
       "OpenDyslexic"
       "Overpass"
       "ProggyClean"
@@ -105,7 +101,6 @@
       "Tinos"
       "VictorMono"
       "ZedMono"
-      # Add more names here if needed (no rebuild needed until you add)
     ]; })
   ];
 
