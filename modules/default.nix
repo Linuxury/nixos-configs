@@ -5,7 +5,7 @@
     ../hardware-configuration/thinkpad.nix
   ];
 
-  # Use the latest non-LTS kernel (bleeding-edge stable from kernel.org)
+  # Latest kernel
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
   boot.loader.systemd-boot.enable = true;
@@ -34,7 +34,7 @@
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nixpkgs.config.allowUnfree = true;
 
-  # Default packages on EVERY machine — easy to add more here
+  # Base packages for EVERY machine
   environment.systemPackages = with pkgs; [
     fastfetch
     fish
@@ -43,13 +43,13 @@
     topgrade
     starship
     git
-    # Add new global tools here later
+    # Add more base tools here later
   ];
 
   programs.fish.enable = true;
   users.defaultUserShell = pkgs.fish;
 
-  # Global fonts — basic set (Nerd Fonts later if wanted)
+  # Global fonts — available to all users on all machines
   fonts.packages = with pkgs; [
     noto-fonts
     noto-fonts-cjk-sans
@@ -57,6 +57,15 @@
     liberation_ttf
     fira-code
     fira-code-symbols
+
+    # Icon fonts
+    font-awesome
+
+    # Nerd Fonts (specific families — lightweight and valid)
+    nerd-fonts.fira-code
+    nerd-fonts.jetbrains-mono
+
+    # Add more Nerd Fonts later if needed (e.g., nerd-fonts.hack)
   ];
 
   system.stateVersion = "25.11";
