@@ -1,14 +1,20 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 {
-  # Snapper for root subvolume (@)
+  # Enable Btrfs quotas on boot (required for Snapper)
+  boot.initrd.postDeviceCommands = lib.mkBefore ''
+    ${pkgs.btrfs-progs}/bin/btrfs quota enable /
+  '';
+
+  # Snapper config for root subvolume
   services.snapper = {
-    snapshotInterval = "hourly";   # Auto snapshots every hour
-    cleanupInterval = "1d";        # Cleanup old snapshots daily
+    snapshotInterval = "hourly";
+    cleanupInterval = "1d";
 
     configs.root = {
       SUBVOLUME = "/";
       FSTYPE = "btrfs";
+      SPACE_LIMIT = "0.5";  # Optional: limit snapshot space to 50%
       ALLOW_USERS = [ "linuxury" ];
       TIMELINE_CREATE = true;
       TIMELINE_CLEANUP = true;
@@ -21,6 +27,6 @@
     };
   };
 
-  # Limit systemd-boot entries for clean boot menu
+  # Clean boot menu
   boot.loader.systemd-boot.configurationLimit = 30;
 }
