@@ -17,13 +17,14 @@
     pulse.enable = true;
   };
 
-  # Some nice default fonts
+  # Nice default fonts (corrected package names)
   fonts.packages = with pkgs; [
     noto-fonts
-    noto-fonts-cjk
+    noto-fonts-cjk-sans      # ← Fixed: was noto-fonts-cjk
     noto-fonts-emoji
     liberation_ttf
     fira-code
     fira-code-symbols
+    # Optional: add more later, e.g. nerdfonts, jetbrains-mono
   ];
 }
