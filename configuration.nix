@@ -20,7 +20,7 @@
   swapDevices = [ { device = "/swap/swapfile"; } ];
 
   environment.systemPackages = with pkgs; [
-    fastfetch fish ghostty starship topgrade zed firefox
+    fastfetch fish ghostty starship topgrade zed firefox git
   ];
 
   programs.fish.enable = true;
@@ -28,7 +28,7 @@
 
   users.users.linuxury = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" ];
+    extraGroups = [ "root" "wheel" "networkmanager" ];
     initialPassword = "changeme123";  # CHANGE THIS AFTER FIRST LOGIN
   };
 
@@ -48,4 +48,13 @@
   nixpkgs.config.allowUnfree = true;
 
   system.stateVersion = "25.11";
+
+  services.openssh = {
+    enable = true;
+    settings = {
+      PermitRootLogin = "yes";
+      PasswordAuthentication = true;
+    };
+  };
+
 }
