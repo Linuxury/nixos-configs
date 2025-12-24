@@ -10,7 +10,7 @@
 
   networking.networkmanager.enable = true;
 
-  time.timeZone = "Europe/Berlin";  # ← CHANGE TO YOUR TIMEZONE
+  time.timeZone = "America/New_York";  # ← Updated to your timezone
   i18n.defaultLocale = "en_US.UTF-8";
   console.keyMap = "us";
 
@@ -54,20 +54,18 @@
     fira-code
     fira-code-symbols
 
-    # Curated Nerd Fonts — best for terminals, icons, dev work
-    # Easy to add more: just add to this list
-    (nerdfonts.override { fonts = [
-      "FiraCode"
-      "JetBrainsMono"
-      "Hack"
-      "Iosevka"
-      "CascadiaCode"
-      "Meslo"
-      "Ubuntu"
-      "RobotoMono"
-      "SourceCodePro"
-      "Mononoki"
-    ]; })
+    # Curated Nerd Fonts (individual packages — lightweight & correct for unstable)
+    # Easy to add more: just add e.g. nerd-fonts.hack
+    nerd-fonts.fira-code
+    nerd-fonts.jetbrains-mono
+    nerd-fonts.hack
+    nerd-fonts.iosevka
+    nerd-fonts.cascadia-code
+    nerd-fonts.meslo
+    nerd-fonts.ubuntu
+    nerd-fonts.roboto-mono
+    nerd-fonts.source-code-pro
+    nerd-fonts.mononoki
   ];
 
   system.stateVersion = "25.11";
