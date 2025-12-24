@@ -1,11 +1,17 @@
-{ ... }:
+{ home-manager, ... }:
 
 {
   imports = [
     ../modules/default.nix
     ../modules/cosmic.nix
     ../modules/snapper.nix
-    ../modules/laptop.nix   # ← NEW: power management
+    ../modules/laptop.nix
+    home-manager.nixosModules.home-manager
+    {
+      home-manager.useGlobalPkgs = true;
+      home-manager.useUserPackages = true;
+      home-manager.users.linuxury = import ../home/linuxury.nix;
+    }
   ];
 
   networking.hostName = "ThinkPad";
