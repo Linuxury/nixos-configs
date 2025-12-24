@@ -4,6 +4,7 @@
   imports = [
     ../modules/default.nix
     ../modules/cosmic.nix
+    ../modules/snapper.nix
   ];
 
   networking.hostName = "ThinkPad";
