@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 {
   # Cosmic Desktop Environment + native greeter
@@ -17,11 +17,17 @@
     pulse.enable = true;
   };
 
-  # COSMIC Store (App Store for COSMIC apps/Flatpaks)
+  # COSMIC Store
   environment.systemPackages = with pkgs; [
     cosmic-store
   ];
 
-  # Flatpak support — required for COSMIC Store to manage Flatpaks
+  # Flatpak support for COSMIC Store
   services.flatpak.enable = true;
+
+  # Ensure cosmic-greeter starts on boot (override for unstable quirks)
+  systemd.services.cosmic-greeter = {
+    wantedBy = [ "graphical.target" ];
+    after = [ "graphical.target" ];
+  };
 }
