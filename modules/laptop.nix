@@ -20,7 +20,7 @@
       CPU_MAX_PERF_ON_BAT = 60;
 
       START_CHARGE_THRESH_BAT0 = 75;  # Start charging when below 75%
-      STOP_CHARGE_THRESH_BAT0 = 80;   # Stop charging when reaching 80%
+      STOP_CHARGE_THRESH_BAT0 = 80;   # Stop charging at 80% (battery health)
 
       RUNTIME_PM_ON_AC = "on";
       RUNTIME_PM_ON_BAT = "auto";
@@ -29,7 +29,7 @@
     };
   };
 
-  # Thermald — prevent CPU/GPU overheating
+  # Thermald — prevent CPU overheating
   services.thermald.enable = true;
 
   # Auto-suspend on lid close
@@ -42,16 +42,9 @@
   services.libinput.touchpad.naturalScrolling = true;
   services.libinput.touchpad.tapping = true;
 
-  # Power profiles daemon (for Cosmic power widget)
-  services.power-profiles-daemon.enable = true;
-
-  # Extra laptop packages
+  # Extra laptop tools
   environment.systemPackages = with pkgs; [
     acpi           # Battery info
     powertop       # Power analysis
-    auto-cpufreq   # Optional CPU frequency scaling (alternative to TLP)
   ];
-
-  # Enable auto-cpufreq as fallback (optional, comment out if TLP is enough)
-  # services.auto-cpufreq.enable = true;
 }
