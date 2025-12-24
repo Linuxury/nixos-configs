@@ -54,12 +54,7 @@
     liberation_ttf
     fira-code
     fira-code-symbols
-
-    # All available Nerd Fonts (automatic — no one-by-one listing needed)
-    # This pulls every valid individual Nerd Font package
-  ] ++ (builtins.attrValues pkgs.nerd-fonts);
-};
+  ] ++ (builtins.attrValues pkgs.nerd-fonts);  # All Nerd Fonts automatically
 
   system.stateVersion = "25.11";
 }
-
