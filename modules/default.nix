@@ -46,10 +46,51 @@
     # Add more base tools here later
   ];
 
-  programs.fish.enable = true;
+  # Global fish config (aliases for all users)
+  programs.fish = {
+    enable = true;
+    shellAliases = {
+      rebuild = "sudo nixos-rebuild switch --flake ~/Documents/GitRepos/nixos-configs#ThinkPad";
+      update = "topgrade --only nix --only flatpak --only git_repos";
+      cleanup = "sudo nix-collect-garbage -d && nix-collect-garbage -d";
+      generations = "nix profile history --profile /nix/var/nix/profiles/system";
+
+      ".." = "cd ..";
+      "..." = "cd ../..";
+      "...." = "cd ../../..";
+      home = "cd ~";
+      docs = "cd ~/Documents";
+      repos = "cd ~/Documents/GitRepos";
+
+      hx = "helix";
+      zed = "zed-editor";
+
+      ff = "fastfetch";
+      ls = "ls --color=auto -F";
+      la = "ls -la";
+      grep = "grep --color=auto";
+
+      g = "git";
+      gs = "git status";
+      ga = "git add";
+      gc = "git commit";
+      gp = "git push";
+      gl = "git pull";
+      gd = "git diff";
+
+      weather = "curl wttr.in";
+      moon = "curl wttr.in/Moon";
+      matrix = "cmatrix";
+    };
+    shellInit = ''
+      set -g fish_greeting ""
+      fastfetch
+    '';
+  };
+
   users.defaultUserShell = pkgs.fish;
 
-  # Global fonts — available to all users on all machines
+  # Global fonts
   fonts.packages = with pkgs; [
     noto-fonts
     noto-fonts-cjk-sans
@@ -57,16 +98,18 @@
     liberation_ttf
     fira-code
     fira-code-symbols
-
-    # Icon fonts
     font-awesome
 
-    # Nerd Fonts (specific families — lightweight and valid)
     nerd-fonts.fira-code
     nerd-fonts.jetbrains-mono
-
-    # Add more Nerd Fonts later if needed (e.g., nerd-fonts.hack)
   ];
+
+  # System-wide default fonts
+  fonts.fontconfig.defaultFonts = {
+    monospace = [ "JetBrainsMono Nerd Font Mono" ];   # Terminals & code
+    sansSerif = [ "JetBrainsMono Nerd Font Propo" ];  # UI text (panels, menus, apps)
+    serif = [ "Noto Serif" ];                         # Fallback serif
+  };
 
   system.stateVersion = "25.11";
 }
