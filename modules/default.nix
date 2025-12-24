@@ -5,6 +5,9 @@
     ../hardware-configuration/thinkpad.nix
   ];
 
+  # Use the latest non-LTS kernel (bleeding-edge stable from kernel.org)
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
@@ -46,7 +49,7 @@
   programs.fish.enable = true;
   users.defaultUserShell = pkgs.fish;
 
-  # Global fonts — basic set (Nerd Fonts removed for now)
+  # Global fonts — basic set (Nerd Fonts later if wanted)
   fonts.packages = with pkgs; [
     noto-fonts
     noto-fonts-cjk-sans
