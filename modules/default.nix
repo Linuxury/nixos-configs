@@ -10,7 +10,8 @@
 
   networking.networkmanager.enable = true;
 
-  time.timeZone = "America/New_York";  # ← Updated to your timezone
+  time.timeZone = "America/New_York";  # Your timezone
+
   i18n.defaultLocale = "en_US.UTF-8";
   console.keyMap = "us";
 
@@ -54,18 +55,18 @@
     fira-code
     fira-code-symbols
 
-    # Curated Nerd Fonts (individual packages — lightweight & correct for unstable)
-    # Easy to add more: just add e.g. nerd-fonts.hack
+    # Curated valid Nerd Fonts (global, lightweight)
+    # Easy to add more: search.nixos.org/packages for "nerd-fonts."
     nerd-fonts.fira-code
     nerd-fonts.jetbrains-mono
     nerd-fonts.hack
     nerd-fonts.iosevka
-    nerd-fonts.cascadia-code
     nerd-fonts.meslo
     nerd-fonts.ubuntu
     nerd-fonts.roboto-mono
     nerd-fonts.source-code-pro
     nerd-fonts.mononoki
+    # Example future additions: nerd-fonts.terminus, nerd-fonts.droid-sans-mono
   ];
 
   system.stateVersion = "25.11";
