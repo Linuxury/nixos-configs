@@ -14,13 +14,13 @@ in
     modules.desktop.cosmic
   ];
 
-users.users.linuxury = {
-  isNormalUser = true;
-  description = "Main user";
-  extraGroups = [ "wheel" "networkmanager" "docker" ];
-  password = "changeme";  # You can hash it with mkpasswd if you want security
-  shell = pkgs.fish;
-};
+  users.users.linuxury = {
+    isNormalUser = true;
+    description = "Main user";
+    extraGroups = [ "wheel" "networkmanager" "docker" ];
+    password = "changeme";  # can hash later
+    shell = pkgs.fish;
+  };
 
   networking.hostName = "ThinkPad";
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
