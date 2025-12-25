@@ -70,13 +70,13 @@
       la = "ls -la";
       grep = "grep --color=auto";
 
-      g = "git";
-      gs = "git status";
-      ga = "git add";
-      gc = "git commit";
-      gp = "git push";
-      gl = "git pull";
-      gd = "git diff";
+      g = "sudo git";
+      gs = "sudo git status";
+      ga = "sudo git add";
+      gc = "sudo git commit";
+      gp = "sudo git push";
+      gl = "sudo git pull";
+      gd = "sudo git diff";
 
       weather = "curl wttr.in";
       moon = "curl wttr.in/Moon";
