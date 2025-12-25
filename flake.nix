@@ -17,26 +17,26 @@
     let
       system = "x86_64-linux";
 
-      hostModules = {
-        # Display managers
-        display.gdm          = ./modules/display/gdm.nix;
-        display.cosmicGreeter= ./modules/display/cosmic-greeter.nix;
+hostModules = {
+  # Display managers
+  display.gdm          = ./modules/display/gdm.nix;
+  display.cosmicGreeter= ./modules/display/cosmic-greeter.nix;
 
-        # Desktop environments
-        desktop.default      = ./modules/desktop/default.nix;  
-        desktop.cosmic       = ./modules/desktop/cosmic.nix;
-        desktop.gnome        = ./modules/desktop/gnome.nix;    
-        desktop.kde          = ./modules/desktop/kde.nix;     
-        desktop.hyprland     = ./modules/desktop/hyprland.nix;
-        desktop.niri         = ./modules/desktop/niri.nix;
+  # Desktop environments
+  desktop.default      = ./modules/desktop/default.nix;  
+  desktop.cosmic       = ./modules/desktop/cosmic.nix;
+  desktop.gnome        = ./modules/desktop/gnome.nix;    
+  desktop.kde          = ./modules/desktop/kde.nix;     
+  desktop.hyprland     = ./modules/desktop/hyprland.nix;
+  desktop.niri         = ./modules/desktop/niri.nix;
 
-        # Host-specific modules
-        host.laptop          = ./modules/host/laptop.nix;
-        host.gaming          = ./modules/host/gaming.nix;
+  # Host-specific modules
+  host.laptop          = ./modules/host/laptop.nix;
+  host.gaming          = ./modules/host/gaming.nix;
 
-        # Snapper module
-        snapper              = ./modules/snapper.nix;
-      };
+  # Snapper module
+  snapper              = ./modules/snapper.nix;
+};
     in {
       nixosConfigurations = {
         ThinkPad = nixpkgs.lib.nixosSystem {
