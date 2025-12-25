@@ -1,40 +1,9 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 {
-  imports = [
-    ../hardware-configuration/thinkpad.nix
-  ];
-
-  # Latest kernel
-  boot.kernelPackages = pkgs.linuxPackages_latest;
-
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-
-  networking.networkmanager.enable = true;
-
-  time.timeZone = "America/New_York";
-
-  i18n.defaultLocale = "en_US.UTF-8";
-  console.keyMap = "us";
-
-  hardware.cpu.amd.updateMicrocode = true;
-  hardware.enableRedistributableFirmware = true;
-
-  swapDevices = [ { device = "/swap/swapfile"; } ];
-
-  services.openssh = {
-    enable = true;
-    settings = {
-      PermitRootLogin = "yes";
-      PasswordAuthentication = true;
-    };
-  };
-
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  nixpkgs.config.allowUnfree = true;
-
-  # Base packages for EVERY machine
+  #########################
+  # Base packages
+  #########################
   environment.systemPackages = with pkgs; [
     fastfetch
     fish
@@ -43,15 +12,18 @@
     topgrade
     starship
     git
-    # Add more base tools here later
+    gnome-disk-utility  # for managing disks safely
+    # Add more global packages here as needed
   ];
 
-  # Global fish config (aliases for all users)
+  #########################
+  # Shell configuration
+  #########################
   programs.fish = {
     enable = true;
     shellAliases = {
-      rebuild = "sudo nixos-rebuild switch --flake /etc/nixos#ThinkPad";
-      update = "topgrade --only nix --only flatpak --only git_repos";
+      rebuild = "sudo nixos-rebuild switch --flake ~/Documents/GitRepos/nixos-configs#ThinkPad";
+      update  = "topgrade --only nix --only flatpak --only git_repos";
       cleanup = "sudo nix-collect-garbage -d && nix-collect-garbage -d";
       generations = "nix profile history --profile /nix/var/nix/profiles/system";
 
@@ -70,13 +42,13 @@
       la = "ls -la";
       grep = "grep --color=auto";
 
-      g = "sudo git";
-      gs = "sudo git status";
-      ga = "sudo git add";
-      gc = "sudo git commit";
-      gp = "sudo git push";
-      gl = "sudo git pull";
-      gd = "sudo git diff";
+      g = "git";
+      gs = "git status";
+      ga = "git add";
+      gc = "git commit";
+      gp = "git push";
+      gl = "git pull";
+      gd = "git diff";
 
       weather = "curl wttr.in";
       moon = "curl wttr.in/Moon";
@@ -90,7 +62,9 @@
 
   users.defaultUserShell = pkgs.fish;
 
-  # Global fonts
+  #########################
+  # Fonts
+  #########################
   fonts.packages = with pkgs; [
     noto-fonts
     noto-fonts-cjk-sans
@@ -99,17 +73,24 @@
     fira-code
     fira-code-symbols
     font-awesome
-
     nerd-fonts.fira-code
     nerd-fonts.jetbrains-mono
   ];
 
-  # System-wide default fonts
   fonts.fontconfig.defaultFonts = {
-    monospace = [ "JetBrainsMono Nerd Font Mono" ];   # Terminals & code
-    sansSerif = [ "JetBrainsMono Nerd Font Propo" ];  # UI text (panels, menus, apps)
-    serif = [ "Noto Serif" ];                         # Fallback serif
+    monospace  = [ "JetBrainsMono Nerd Font Mono" ];   # Terminals & code
+    sansSerif  = [ "JetBrainsMono Nerd Font Propo" ];  # UI text
+    serif      = [ "Noto Serif" ];                      # Fallback
   };
 
+  #########################
+  # Polkit (Privilege management)
+  #########################
+  security.polkit.enable = true;
+
+  #########################
+  # System settings
+  #########################
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
   system.stateVersion = "25.11";
 }
