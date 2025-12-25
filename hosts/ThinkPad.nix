@@ -9,6 +9,7 @@ in
     (if hwConfigExists then import hwConfigPath else {})
 
     # Correct paths inside modules
+    modules.hardware-configuration.thinkpad
     modules.desktop.default
     modules.display.gdm
     modules.desktop.cosmic
