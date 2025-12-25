@@ -37,6 +37,11 @@ hostModules = {
   host.laptop          = ./modules/host/laptop.nix;
   host.gaming          = ./modules/host/gaming.nix;
 
+  # Users
+  users.linuxury       = ./modules/users/linuxury.nix;
+  users.babylinux      = ./modules/users/babylinux.nix;
+  users.alex           = ./modules/users/alex.nix;
+
   # Snapper
   snapper              = ./modules/snapper.nix;
 };
