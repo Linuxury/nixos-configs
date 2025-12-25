@@ -16,55 +16,73 @@
   outputs = { self, nixpkgs, home-manager, hyprland, niri, ... }:
     let
       system = "x86_64-linux";
-    in {
-      # Define reusable module paths for host modules
-      modules = {
-        display.gdm     = ./modules/display/gdm.nix;
-        desktop.common  = ./modules/desktop/common.nix;
-        desktop.cosmic  = ./modules/desktop/cosmic.nix;
-        # Add KDE, GNOME, Hyprland, Niri later if desired
+      hostModules = {
+        display.gdm    = ./modules/display/gdm.nix;
+        desktop.common = ./modules/desktop/common.nix;
+        desktop.cosmic = ./modules/desktop/cosmic.nix;
       };
-
+    in {
       nixosConfigurations = {
         ThinkPad = nixpkgs.lib.nixosSystem {
           inherit system;
-          specialArgs = { inherit self hyprland niri home-manager; };
+          specialArgs = {
+            inherit self hyprland niri home-manager;
+            modules = hostModules;
+          };
           modules = [ ./hosts/ThinkPad.nix ];
         };
 
         Ryzen5900x = nixpkgs.lib.nixosSystem {
           inherit system;
-          specialArgs = { inherit self hyprland niri home-manager; };
+          specialArgs = {
+            inherit self hyprland niri home-manager;
+            modules = hostModules;
+          };
           modules = [ ./hosts/Ryzen5900x.nix ];
         };
 
         Ryzen5800x = nixpkgs.lib.nixosSystem {
           inherit system;
-          specialArgs = { inherit self hyprland niri home-manager; };
+          specialArgs = {
+            inherit self hyprland niri home-manager;
+            modules = hostModules;
+          };
           modules = [ ./hosts/Ryzen5800x.nix ];
         };
 
         ASUSTuff-A15 = nixpkgs.lib.nixosSystem {
           inherit system;
-          specialArgs = { inherit self hyprland niri home-manager; };
+          specialArgs = {
+            inherit self hyprland niri home-manager;
+            modules = hostModules;
+          };
           modules = [ ./hosts/ASUSTuff-A15.nix ];
         };
 
         Alex-Desktop = nixpkgs.lib.nixosSystem {
           inherit system;
-          specialArgs = { inherit self hyprland niri home-manager; };
+          specialArgs = {
+            inherit self hyprland niri home-manager;
+            modules = hostModules;
+          };
           modules = [ ./hosts/Alex-Desktop.nix ];
         };
 
         Alex-Laptop = nixpkgs.lib.nixosSystem {
           inherit system;
-          specialArgs = { inherit self hyprland niri home-manager; };
+          specialArgs = {
+            inherit self hyprland niri home-manager;
+            modules = hostModules;
+          };
           modules = [ ./hosts/Alex-Laptop.nix ];
         };
 
         generic = nixpkgs.lib.nixosSystem {
           inherit system;
-          specialArgs = { inherit self hyprland niri home-manager; };
+          specialArgs = {
+            inherit self hyprland niri home-manager;
+            modules = hostModules;
+          };
           modules = [ ./hosts/generic.nix ];
         };
       };
