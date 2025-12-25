@@ -17,13 +17,19 @@
     let
       system = "x86_64-linux";
     in {
+      # Define reusable module paths for host modules
+      modules = {
+        display.gdm     = ./modules/display/gdm.nix;
+        desktop.common  = ./modules/desktop/common.nix;
+        desktop.cosmic  = ./modules/desktop/cosmic.nix;
+        # Add KDE, GNOME, Hyprland, Niri later if desired
+      };
+
       nixosConfigurations = {
         ThinkPad = nixpkgs.lib.nixosSystem {
           inherit system;
           specialArgs = { inherit self hyprland niri home-manager; };
-          modules = [
-            ./hosts/ThinkPad.nix
-          ];
+          modules = [ ./hosts/ThinkPad.nix ];
         };
 
         Ryzen5900x = nixpkgs.lib.nixosSystem {
