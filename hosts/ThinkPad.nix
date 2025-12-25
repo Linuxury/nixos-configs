@@ -1,4 +1,4 @@
-{ config, lib, pkgs, self, ... }:
+{ config, lib, pkgs, modules, ... }:
 
 let
   hwConfigPath = ./hardware-configuration.nix;
@@ -6,24 +6,15 @@ let
 in
 {
   imports = [
-    # Conditional hardware config
     (if hwConfigExists then import hwConfigPath else {})
 
-    # Display manager
-    self.modules.display.gdm
-
-    # Desktop foundation
-    self.modules.desktop.common
-
-    # Default desktop
-    self.modules.desktop.cosmic
+    modules.display.gdm
+    modules.desktop.common
+    modules.desktop.cosmic
   ];
 
   networking.hostName = "ThinkPad";
-
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
   time.timeZone = "America/New_York";
-
   system.stateVersion = "25.11";
 }
