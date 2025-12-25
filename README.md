@@ -83,7 +83,7 @@ sudo passwd root
 ```
 Start SSH:
 ```bash
-systemctl start sshd
+sudo systemctl start sshd
 ```
 Find IP address:
 ```bash
