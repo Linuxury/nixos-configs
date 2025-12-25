@@ -9,7 +9,7 @@ in
     (if hwConfigExists then import hwConfigPath else {})
 
     # Correct paths inside modules
-    modules.desktop.default
+    modules.default
     modules.display.gdm
     modules.desktop.cosmic
   ];
