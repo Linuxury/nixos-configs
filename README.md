@@ -79,7 +79,7 @@ Do not continue until networking works.
 ## 4. Enable SSH (Remote Install)
 Set a temporary root password:
 ```bash
-passwd                  
+sudo passwd root                  
 ```
 Start SSH:
 ```bash
