@@ -18,7 +18,7 @@ users.users.linuxury = {
   isNormalUser = true;
   description = "Main user";
   extraGroups = [ "wheel" "networkmanager" "docker" ];
-  password = "yourpassword";  # You can hash it with mkpasswd if you want security
+  password = "changeme";  # You can hash it with mkpasswd if you want security
   shell = pkgs.fish;
 };
 
