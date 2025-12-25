@@ -1,13 +1,13 @@
 { config, lib, pkgs, modules, ... }:
 
 {
-  imports = [
-    modules.hardware-configuration.thinkpad
-    modules.desktop.default
-    modules.display.gdm
-    modules.desktop.cosmic
-    modules.users.linuxury   # Add other users here if desired
-  ];
+imports = [
+  modules.hardware-configuration.thinkpad
+  modules.desktop.default
+  modules.display.gdm
+  modules.desktop.cosmic
+  modules.users.linuxury
+];
 
   networking.hostName = "ThinkPad";
 
