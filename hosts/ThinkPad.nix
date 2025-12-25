@@ -1,26 +1,30 @@
-{ home-manager, ... }:
+{ config, lib, pkgs, ... }:
 
 {
   imports = [
-    ../modules/default.nix
-    ../modules/cosmic.nix
-    ../modules/snapper.nix
-    ../modules/laptop.nix
-    home-manager.nixosModules.home-manager
-    {
-      home-manager.useGlobalPkgs = true;
-      home-manager.useUserPackages = true;
-      home-manager.users.linuxury = import ../home/linuxury.nix;
-    }
+    # Existing hardware configuration
+    ./hardware-configuration.nix
+
+    # Display manager (safe default)
+    ../modules/display/gdm.nix
+
+    # Desktop foundation
+    ../modules/desktop/common.nix
+
+    # Default desktop (COSMIC)
+    ../modules/desktop/cosmic.nix
   ];
 
+  # Hostname (keep explicit)
   networking.hostName = "ThinkPad";
 
-  users.users.linuxury = {
-    isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" ];
-    initialPassword = "changeme123";
-  };
+  # Allow flakes & nix-command
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  security.sudo.wheelNeedsPassword = false;
+  # Timezone (example; keep or change if already set elsewhere)
+  time.timeZone = "America/New_York";
+
+  # System version — DO NOT CHANGE once set
+  system.stateVersion = "24.05";
 }
+
