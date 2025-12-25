@@ -23,7 +23,7 @@
         display.cosmicGreeter= ./modules/display/cosmic-greeter.nix;
 
         # Desktop environments
-        desktop.default      = ./modules/default.nix;  
+        desktop.default      = ./modules/desktop/default.nix;  
         desktop.cosmic       = ./modules/desktop/cosmic.nix;
         desktop.gnome        = ./modules/desktop/gnome.nix;    
         desktop.kde          = ./modules/desktop/kde.nix;     
