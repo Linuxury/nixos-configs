@@ -162,7 +162,7 @@ mount /dev/disk/by-label/EFI /mnt/boot
 
 ## 10. Create Swapfile
 ```bash
-btrfs filesystem mkswapfile --size 8g --uuid clear /mnt/swap/swapfile
+btrfs filesystem mkswapfile --size 8g /mnt/swap/swapfile
 swapon /mnt/swap/swapfile
 ```
 
