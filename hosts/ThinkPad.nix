@@ -1,9 +1,13 @@
 { config, lib, pkgs, ... }:
 
+let
+  hwConfigPath = ./hardware-configuration.nix;
+  hwConfigExists = builtins.pathExists hwConfigPath;
+in
 {
   imports = [
-    # Existing hardware configuration
-    ./hardware-configuration.nix
+    # Import hardware configuration if it exists
+    (if hwConfigExists then import hwConfigPath else {})
 
     # Display manager (safe default)
     ../modules/display/gdm.nix
@@ -15,16 +19,15 @@
     ../modules/desktop/cosmic.nix
   ];
 
-  # Hostname (keep explicit)
+  # Hostname (explicit)
   networking.hostName = "ThinkPad";
 
   # Allow flakes & nix-command
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  # Timezone (example; keep or change if already set elsewhere)
+  # Timezone
   time.timeZone = "America/New_York";
 
   # System version — DO NOT CHANGE once set
-  system.stateVersion = "24.05";
+  system.stateVersion = "25.11";
 }
-
