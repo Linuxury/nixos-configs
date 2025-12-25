@@ -18,15 +18,18 @@
       system = "x86_64-linux";
 
 hostModules = {
+  # Hardware configuration
+  hardware-configuration.thinkpad = ./hardware-configuration/thinkpad.nix;
+
   # Display managers
   display.gdm          = ./modules/display/gdm.nix;
   display.cosmicGreeter= ./modules/display/cosmic-greeter.nix;
 
   # Desktop environments
-  desktop.default      = ./modules/desktop/default.nix;  
+  desktop.default      = ./modules/desktop/default.nix;
   desktop.cosmic       = ./modules/desktop/cosmic.nix;
-  desktop.gnome        = ./modules/desktop/gnome.nix;    
-  desktop.kde          = ./modules/desktop/kde.nix;     
+  desktop.gnome        = ./modules/desktop/gnome.nix;
+  desktop.kde          = ./modules/desktop/kde.nix;
   desktop.hyprland     = ./modules/desktop/hyprland.nix;
   desktop.niri         = ./modules/desktop/niri.nix;
 
@@ -34,7 +37,7 @@ hostModules = {
   host.laptop          = ./modules/host/laptop.nix;
   host.gaming          = ./modules/host/gaming.nix;
 
-  # Snapper module
+  # Snapper
   snapper              = ./modules/snapper.nix;
 };
     in {
