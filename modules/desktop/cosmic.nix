@@ -1,11 +1,10 @@
-{ pkgs, lib, ... }:
+{ pkgs, ... }:
 
 {
-  # Cosmic Desktop Environment + native greeter
+  # COSMIC desktop only (no greeter)
   services.desktopManager.cosmic.enable = true;
-  services.displayManager.cosmic-greeter.enable = true;
 
-  # Required for Wayland/desktop
+  # Required for graphical sessions
   services.xserver.enable = true;
 
   # Sound
@@ -20,12 +19,4 @@
   # COSMIC Store + Flatpak
   environment.systemPackages = with pkgs; [ cosmic-store ];
   services.flatpak.enable = true;
-
-  # Fix greeter startup reliability (unstable quirk)
-  systemd.services.cosmic-greeter = {
-    wantedBy = lib.mkForce [ "graphical.target" ];
-    restartIfChanged = true;
-    serviceConfig.Restart = "always";
-    serviceConfig.RestartSec = 3;
-  };
 }
