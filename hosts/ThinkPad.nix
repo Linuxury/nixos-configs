@@ -6,16 +6,11 @@ let
 in
 {
   imports = [
-    # Only import hardware-configuration if it exists
     (if hwConfigExists then import hwConfigPath else {})
 
-    # Global baseline system module (merged default + common)
-    modules.default
-
-    # Display manager
+    # Correct paths inside modules
+    modules.desktop.default
     modules.display.gdm
-
-    # Desktop environment
     modules.desktop.cosmic
   ];
 
