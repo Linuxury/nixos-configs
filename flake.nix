@@ -19,7 +19,7 @@
 
 hostModules = {
   # Hardware configuration
-  hardware-configuration.thinkpad = ./hardware-configuration/thinkpad.nix;
+  hardware-configuration.thinkpad = ./modules/hardware-configuration/thinkpad.nix;
 
   # Display managers
   display.gdm          = ./modules/display/gdm.nix;
@@ -45,6 +45,7 @@ hostModules = {
   # Snapper
   snapper              = ./modules/snapper.nix;
 };
+
     in {
       nixosConfigurations = {
         ThinkPad = nixpkgs.lib.nixosSystem {
