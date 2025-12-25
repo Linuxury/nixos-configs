@@ -82,7 +82,7 @@ swapon /mnt/swap/swapfile
 ### 7. Clone Repo & Install
 ```bash
 nix-env -iA nixos.git
-git clone git@github.com:Linuxury/nixos-configs.git /mnt/etc/nixos
+git clone https://github.com/Linuxury/nixos-configs.git /mnt/etc/nixos
 cd /mnt/etc/nixos
 
 # Install the desired host
