@@ -46,7 +46,7 @@ Follow steps in order.
 Set a large, readable font:
 
 ```bash
-setfont ter-132b
+setfont ter-118b
 ```
 
 ## 3. Network Setup
