@@ -4,7 +4,7 @@
   users.users.babylinux = {
     isNormalUser = true;
     # Optional description; keep private or local-only
-    description = "Main User"; 
+    description = "Milagros Monserrate"; 
     extraGroups = [ "wheel" "networkmanager" "docker" ];
     password = "changeme"; # optionally hashed with mkpasswd
     shell = pkgs.fish;
