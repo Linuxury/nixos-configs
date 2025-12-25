@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... , self, ... }:
+{ config, lib, pkgs, self, ... }:
 
 let
   hwConfigPath = ./hardware-configuration.nix;
@@ -9,7 +9,7 @@ in
     # Conditional hardware config
     (if hwConfigExists then import hwConfigPath else {})
 
-    # Display manager via flake input
+    # Display manager
     self.modules.display.gdm
 
     # Desktop foundation
@@ -20,7 +20,10 @@ in
   ];
 
   networking.hostName = "ThinkPad";
+
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
   time.timeZone = "America/New_York";
+
   system.stateVersion = "25.11";
 }
