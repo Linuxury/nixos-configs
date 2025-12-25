@@ -59,16 +59,16 @@ If this works, skip Wi-Fi setup.
 
 Wi-Fi Setup (if needed)
 ```bash
-iwctl
+nmtui
 ```
-Inside iwctl:
-```bash
-device list
-station <device> scan
-station <device> get-networks
-station <device> connect <SSID>
-exit
-```
+Steps:
+
+ - Select Activate a connection
+ - Choose your Wi-Fi interface
+ - Pick your network SSID
+ - Enter password
+ - Exit and verify:
+
 Verify:
 ```bash
 ping -c 3 nixos.org
