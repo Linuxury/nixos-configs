@@ -4,7 +4,7 @@
   users.users.alex = {
     isNormalUser = true;
     # Optional description; keep private or local-only
-    description = "Main User"; 
+    description = "Alexander Rodriguez"; 
     extraGroups = [ "wheel" "networkmanager" "docker" ];
     password = "changeme"; # optionally hashed with mkpasswd
     shell = pkgs.fish;
