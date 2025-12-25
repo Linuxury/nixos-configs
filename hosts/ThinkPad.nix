@@ -1,18 +1,44 @@
 { config, lib, pkgs, modules, ... }:
 
 {
-imports = [
-  modules.hardware-configuration.thinkpad
-  modules.desktop.default
-  modules.display.gdm
-  modules.desktop.cosmic
-  modules.users.linuxury
-];
+  #########################
+  # Hardware configuration
+  #########################
+  imports = [
+    modules.hardware-configuration.thinkpad
+  ];
 
+  #########################
+  # Desktop environments
+  #########################
+  imports = imports ++ [
+    modules.desktop.default
+    modules.desktop.cosmic
+  ];
+
+  #########################
+  # Display manager
+  #########################
+  imports = imports ++ [
+    modules.display.gdm
+  ];
+
+  #########################
+  # Users
+  #########################
+  imports = imports ++ [
+    modules.users.linuxury
+  ];
+
+  #########################
+  # Networking
+  #########################
   networking.hostName = "ThinkPad";
 
+  #########################
+  # Time & Locale
+  #########################
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   time.timeZone = "America/New_York";
   system.stateVersion = "25.11";
 }
-
