@@ -1,21 +1,54 @@
-{ ... }:
+{ config, lib, pkgs, modules, ... }:
 
 {
+  #########################
+  # Hardware configuration
+  #########################
   imports = [
-    ../modules/default.nix
-    ../modules/cosmic.nix
-    # ../modules/snapper.nix   # Optional
+    modules.hardware-configuration.alex-desktop
   ];
 
+  #########################
+  # Desktop environments
+  #########################
+  imports = imports ++ [
+    modules.desktop.default
+    modules.desktop.cosmic
+  ];
+
+  #########################
+  # Display manager
+  #########################
+  imports = imports ++ [
+    modules.display.gdm
+  ];
+
+  #########################
+  # Host-specific modules
+  #########################
+  imports = imports ++ [
+    modules.host.gaming
+    modules.host.performance-cpu
+    modules.host.performance-amd    # AMD GPU
+    # modules.host.performance-nvidia   # only if NVIDIA exists
+  ];
+
+  #########################
+  # Users
+  #########################
+  imports = imports ++ [
+    modules.users.alex
+  ];
+
+  #########################
+  # Networking
+  #########################
   networking.hostName = "Alex-Desktop";
 
-  # Kid's user
-  users.users.alex = {
-    isNormalUser = true;
-    extraGroups = [ "networkmanager" ];
-    initialPassword = "changeme123";
-  };
-
-  # No sudo for kid (remove wheel group if wanted)
-  security.sudo.wheelNeedsPassword = false;
+  #########################
+  # Time & Locale
+  #########################
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  time.timeZone = "America/New_York";
+  system.stateVersion = "25.11";
 }
