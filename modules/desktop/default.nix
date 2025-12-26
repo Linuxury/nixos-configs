@@ -89,6 +89,12 @@
   security.polkit.enable = true;
 
   #########################
+  # Bootloader (systemd-boot for all hosts)
+  #########################
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+
+  #########################
   # System settings
   #########################
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
