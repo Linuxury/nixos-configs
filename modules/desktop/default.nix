@@ -23,7 +23,7 @@
   programs.fish = {
     enable = true;
     shellAliases = {
-      rebuild = "sudo nixos-rebuild switch --flake ~/Documents/GitRepos/nixos-configs#ThinkPad";
+      rebuild = "sudo nixos-rebuild switch --flake /etc/nixos#ThinkPad";
       update  = "topgrade --only nix --only flatpak --only git_repos";
       cleanup = "sudo nix-collect-garbage -d && nix-collect-garbage -d";
       generations = "nix profile history --profile /nix/var/nix/profiles/system";
