@@ -24,8 +24,10 @@
         #########################
         # Display managers
         #########################
-        display.gdm          = ./modules/display/gdm.nix;
-        display.cosmicGreeter= ./modules/display/cosmic-greeter.nix;
+        display.gdm           = ./modules/display/gdm.nix;
+        display.cosmicGreeter = ./modules/display/cosmic-greeter.nix;
+        display.lightdm       = ./modules/display/lightdm.nix;
+        display.sddm          = ./modules/display/sddm.nix;
 
         #########################
         # Desktop environments
