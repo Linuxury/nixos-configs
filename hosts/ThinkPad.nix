@@ -1,4 +1,4 @@
-{ config, lib, pkgs, modules, jovianModule ? null, ... }:
+{ config, lib, pkgs, hostModules, jovianModule ? null, ... }:
 
 {
   #########################
@@ -13,9 +13,7 @@
     modules.host.gaming
     modules.host.coding
     modules.users.linuxury
-  ] ++ lib.optional (jovianModule != null) [
-    jovianModule.nixosModules.default
-  ];
+  ] ++ lib.optional (jovianModule != null) [ jovianModule.default ];
 
   #########################
   # Networking
