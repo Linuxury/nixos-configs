@@ -1,4 +1,4 @@
-{ config, lib, pkgs, modules, ... }:
+{ config, lib, pkgs, modules, inputs, jovianModule, ... }:
 
 {
   #########################
@@ -29,6 +29,7 @@
   imports = imports ++ [
     modules.host.laptop
     modules.host.gaming
+    jovianModule
   ];
 
   #########################
@@ -50,4 +51,5 @@
   time.timeZone = "America/New_York";
   system.stateVersion = "25.11";
 }
+
 
