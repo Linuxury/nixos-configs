@@ -1,13 +1,19 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 {
-  # COSMIC desktop only (no greeter)
+  #########################
+  # COSMIC Desktop
+  #########################
   services.desktopManager.cosmic.enable = true;
 
-  # Required for graphical sessions
+  #########################
+  # Graphical session support
+  #########################
   services.xserver.enable = true;
 
+  #########################
   # Sound
+  #########################
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -16,7 +22,11 @@
     pulse.enable = true;
   };
 
+  #########################
   # COSMIC Store + Flatpak
-  environment.systemPackages = with pkgs; [ cosmic-store ];
+  #########################
+  environment.systemPackages = with pkgs; [
+    cosmic-store
+  ];
   services.flatpak.enable = true;
 }
