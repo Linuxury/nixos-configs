@@ -33,13 +33,12 @@
   #########################
   # Decky Loader (Jovian)
   #########################
-  # This will only work if your flake passes jovianModule as a specialArg
-  nixpkgs.overlays = lib.mkIf enableDecky [
-    (jovianModule.overlay)
+  # Only include overlay and enable service if jovianModule is provided
+  nixpkgs.overlays = lib.mkIf (jovianModule != null) [
+    jovianModule.overlay
   ];
 
-  # Enable Decky Loader service if available
-  services.decky-loader.enable = lib.mkIf enableDecky true;
+  services.decky-loader.enable = lib.mkIf (jovianModule != null) true;
 
   #########################
   # AMD-specific tweaks
