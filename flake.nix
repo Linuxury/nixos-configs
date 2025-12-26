@@ -95,19 +95,25 @@
 
         Alex-Desktop = nixpkgs.lib.nixosSystem {
           inherit system;
-          specialArgs = { inherit self hyprland niri home-manager; modules = hostModules; };
+          specialArgs = { 
+            inherit self hyprland niri home-manager; 
+            modules = hostModules; };
           modules = [ ./hosts/Alex-Desktop.nix ];
         };
 
         Alex-Laptop = nixpkgs.lib.nixosSystem {
           inherit system;
-          specialArgs = { inherit self hyprland niri home-manager; modules = hostModules; };
+          specialArgs = { 
+            inherit self hyprland niri home-manager; 
+            modules = hostModules; };
           modules = [ ./hosts/Alex-Laptop.nix ];
         };
 
         generic = nixpkgs.lib.nixosSystem {
           inherit system;
-          specialArgs = { inherit self hyprland niri home-manager; modules = hostModules; };
+          specialArgs = { 
+            inherit self hyprland niri home-manager; 
+            modules = hostModules; };
           modules = [ ./hosts/generic.nix ];
         };
       };
