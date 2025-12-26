@@ -1,19 +1,25 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, jovianModule ? null, ... }:
 
 {
   #########################
   # Hardware configuration
   #########################
   imports = [
-    ../../modules/hardware-configuration/thinkpad.nix
-    ../../modules/desktop/default.nix
-    ../../modules/desktop/cosmic.nix
-    ../../modules/display/gdm.nix
-    ../../modules/host/laptop.nix
-    ../../modules/host/gaming.nix
-    ../../modules/host/coding.nix
-    ../../modules/users/linuxury.nix
+    ../modules/hardware-configuration/thinkpad.nix
+    ../modules/desktop/default.nix
+    ../modules/desktop/cosmic.nix
+    ../modules/display/gdm.nix
+    ../modules/host/laptop.nix
+    ../modules/host/gaming.nix
+    ../modules/host/coding.nix
+    ../modules/users/linuxury.nix
   ];
+
+  #########################
+  # Optional Decky Loader
+  #########################
+  nixpkgs.overlays = lib.mkIf (jovianModule != null) [ jovianModule.overlay ];
+  services.decky-loader.enable = lib.mkIf (jovianModule != null) true;
 
   #########################
   # Networking
