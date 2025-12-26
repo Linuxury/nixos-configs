@@ -29,6 +29,9 @@
   imports = imports ++ [
     modules.host.gaming
     modules.host.coding
+    modules.host.performance-cpu
+    modules.host.performance-amd    # uncomment if AMD GPU exists
+    # modules.host.performance-nvidia   # only on hosts with NVIDIA
   ];
 
   #########################
