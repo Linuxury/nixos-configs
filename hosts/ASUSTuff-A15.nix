@@ -10,7 +10,7 @@
     hostModules.desktop.default
     hostModules.desktop.cosmic
 
-    hostModules.display.cosmic-greeter
+    hostModules.display.cosmicGreeter
 
     hostModules.host.laptop
     hostModules.host.gaming
@@ -39,4 +39,5 @@
   #########################
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 }
+
 
