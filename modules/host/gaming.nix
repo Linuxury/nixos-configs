@@ -17,7 +17,7 @@
   # MangoHud (FPS overlay)
   environment.systemPackages = with pkgs; [
     mangohud
-    protonup-qt
+    protonplus
     gamescope
     lutris
     wineWowPackages.stable
