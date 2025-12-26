@@ -19,48 +19,47 @@
         #########################
         # Hardware configuration
         #########################
-        hardware-configuration.thinkpad = ./modules/hardware-configuration/thinkpad.nix;
+        hardware-configuration.default = ./modules/hardware-configuration/default.nix;
 
         #########################
         # Display managers
         #########################
-        display.gdm           = ./modules/display/gdm.nix;
-        display.cosmicGreeter = ./modules/display/cosmic-greeter.nix;
+        display.gdm          = ./modules/display/gdm.nix;
+        display.cosmicGreeter= ./modules/display/cosmic-greeter.nix;
 
         #########################
         # Desktop environments
         #########################
-        desktop.default   = ./modules/desktop/default.nix;
-        desktop.cosmic    = ./modules/desktop/cosmic.nix;
-        desktop.gnome     = ./modules/desktop/gnome.nix;
-        desktop.kde       = ./modules/desktop/kde.nix;
-        desktop.hyprland  = ./modules/desktop/hyprland.nix;
-        desktop.niri      = ./modules/desktop/niri.nix;
+        desktop.default      = ./modules/desktop/default.nix;
+        desktop.cosmic       = ./modules/desktop/cosmic.nix;
+        desktop.gnome        = ./modules/desktop/gnome.nix;
+        desktop.kde          = ./modules/desktop/kde.nix;
+        desktop.hyprland     = ./modules/desktop/hyprland.nix;
+        desktop.niri         = ./modules/desktop/niri.nix;
 
         #########################
         # Host-specific modules
         #########################
-        host.laptop           = ./modules/host/laptop.nix;
-        host.gaming           = ./modules/host/gaming.nix;
-        host.coding           = ./modules/host/coding.nix;
-        host.performance-cpu  = ./modules/host/performance-cpu.nix;
-        host.performance-amd  = ./modules/host/performance-amd.nix;
+        host.laptop          = ./modules/host/laptop.nix;
+        host.gaming          = ./modules/host/gaming.nix;
+        host.coding          = ./modules/host/coding.nix;
+        host.performance-cpu = ./modules/host/performance-cpu.nix;
+        host.performance-amd = ./modules/host/performance-amd.nix;
         host.performance-nvidia = ./modules/host/performance-nvidia.nix;
 
         #########################
         # Users
         #########################
-        users.linuxury = ./modules/users/linuxury.nix;
-        users.babylinux = ./modules/users/babylinux.nix;
-        users.alex = ./modules/users/alex.nix;
+        users.linuxury       = ./modules/users/linuxury.nix;
+        users.babylinux      = ./modules/users/babylinux.nix;
+        users.alex           = ./modules/users/alex.nix;
 
         #########################
         # Snapper
         #########################
-        snapper = ./modules/snapper.nix;
+        snapper              = ./modules/snapper.nix;
       };
-    in
-    {
+    in {
       nixosConfigurations = {
         ThinkPad = nixpkgs.lib.nixosSystem {
           inherit system;
