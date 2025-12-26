@@ -56,8 +56,8 @@ hostModules = {
         ThinkPad = nixpkgs.lib.nixosSystem {
           inherit system;
           specialArgs = {
-            inherit self hyprland niri home-manager;
-            jovianModule = inputs.jovian.nixosModules.default;
+            inherit self hyprland niri home-manager jovian;
+            jovianModule = jovian.nixosModules.default;
             modules = hostModules;
           };
           modules = [ ./hosts/ThinkPad.nix ];
