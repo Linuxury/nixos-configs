@@ -65,37 +65,49 @@ hostModules = {
 
         Ryzen5900x = nixpkgs.lib.nixosSystem {
           inherit system;
-          specialArgs = { inherit self hyprland niri home-manager jovian; modules = hostModules; };
+          specialArgs = { inherit self hyprland niri home-manager jovian; 
+          jovianModule = jovian.nixosModules.default;
+          modules = hostModules; };
           modules = [ ./hosts/Ryzen5900x.nix ];
         };
 
         Ryzen5800x = nixpkgs.lib.nixosSystem {
           inherit system;
-          specialArgs = { inherit self hyprland niri home-manager jovian; modules = hostModules; };
+          specialArgs = { inherit self hyprland niri home-manager jovian; 
+          jovianModule = jovian.nixosModules.default;
+          modules = hostModules; };
           modules = [ ./hosts/Ryzen5800x.nix ];
         };
 
         ASUSTuff-A15 = nixpkgs.lib.nixosSystem {
           inherit system;
-          specialArgs = { inherit self hyprland niri home-manager jovian; modules = hostModules; };
+          specialArgs = { inherit self hyprland niri home-manager jovian; 
+          jovianModule = jovian.nixosModules.default;
+          modules = hostModules; };
           modules = [ ./hosts/ASUSTuff-A15.nix ];
         };
 
         Alex-Desktop = nixpkgs.lib.nixosSystem {
           inherit system;
-          specialArgs = { inherit self hyprland niri home-manager jovian; modules = hostModules; };
+          specialArgs = { inherit self hyprland niri home-manager jovian; 
+          jovianModule = jovian.nixosModules.default;
+          modules = hostModules; };
           modules = [ ./hosts/Alex-Desktop.nix ];
         };
 
         Alex-Laptop = nixpkgs.lib.nixosSystem {
           inherit system;
-          specialArgs = { inherit self hyprland niri home-manager jovian; modules = hostModules; };
+          specialArgs = { inherit self hyprland niri home-manager jovian; 
+          jovianModule = jovian.nixosModules.default;
+          modules = hostModules; };
           modules = [ ./hosts/Alex-Laptop.nix ];
         };
 
         generic = nixpkgs.lib.nixosSystem {
           inherit system;
-          specialArgs = { inherit self hyprland niri home-manager jovian; modules = hostModules; };
+          specialArgs = { inherit self hyprland niri home-manager jovian; 
+          jovianModule = jovian.nixosModules.default;
+          modules = hostModules; };
           modules = [ ./hosts/generic.nix ];
         };
       };
