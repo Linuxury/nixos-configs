@@ -6,15 +6,12 @@
   #########################
   programs.steam.enable = true;
 
-  # 32-bit support for old games
   hardware.opengl.driSupport32Bit = true;
   hardware.opengl.extraPackages32 = with pkgs.pkgsi686Linux; [ libva ];
   hardware.pulseaudio.support32Bit = true;
 
-  # Gamemode (performance boost)
   programs.gamemode.enable = true;
 
-  # Packages 
   environment.systemPackages = with pkgs; [
     mangohud
     protonplus
