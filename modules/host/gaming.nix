@@ -28,7 +28,7 @@
   # AMD-specific tweaks
   #########################
   hardware.opengl.extraPackages = with pkgs; [
-    amdvlk
+    # amdvlk
     rocmPackages.clr.icd
   ];
 
