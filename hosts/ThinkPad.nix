@@ -24,6 +24,14 @@
   ];
 
   #########################
+  # Host-specific modules
+  #########################
+  imports = imports ++ [
+    modules.host.gaming
+    modules.host.coding
+  ];
+
+  #########################
   # Users
   #########################
   imports = imports ++ [
