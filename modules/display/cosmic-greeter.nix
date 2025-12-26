@@ -4,5 +4,6 @@
   #########################
   # Cosmic Greeter
   #########################
-  services.xserver.displayManager.cosmicGreeter.enable = true;
+  # services.xserver.displayManager.cosmicGreeter.enable = true;
+  environment.systemPackages = with pkgs; [ cosmic-greeter ];
 }
