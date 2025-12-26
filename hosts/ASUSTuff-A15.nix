@@ -1,4 +1,4 @@
-{ config, lib, pkgs, modules, ... }:
+{ config, lib, pkgs, modules, inputs, jovianModule, ... }:
 
 {
   #########################
@@ -30,6 +30,7 @@
     modules.host.laptop
     modules.host.gaming
     modules.host.performance-nvidia   # only uncomment if NVIDIA exists
+    jovianModule
   ];
 
   #########################
@@ -51,3 +52,4 @@
   time.timeZone = "America/New_York";
   system.stateVersion = "25.11";
 }
+
