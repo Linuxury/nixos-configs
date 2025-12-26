@@ -1,21 +1,21 @@
 { config, pkgs, lib, ... }:
 
 {
-  #########################
-  # Coding / Developer tools
-  #########################
+#########################
+# Coding tools
+#########################
+environment.systemPackages = with pkgs; [
+  python310      # Python 3.10 (or pkgs.python310Full if you want full stdlib)
+  python310Packages.pip
+  rustc          # Rust compiler
+  cargo          # Rust package manager
+  zed-editor
+  helix
+  neovim
+  git
+  tree
+];
 
-  environment.systemPackages = with pkgs; [
-    python310Full
-    python310Packages.pip
-    python310Packages.virtualenv
-    rustc
-    cargo
-    fd         # Faster file search
-    ripgrep    # Fast grep alternative
-    make
-    cmake
-  ];
 
   #########################
   # Python environment
