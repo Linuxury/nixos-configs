@@ -65,7 +65,7 @@
           inherit system;
           specialArgs = { 
             inherit self hyprland niri home-manager hostModules; 
-            hostModules = hostModules; };
+            };
           modules = [ ./hosts/ThinkPad.nix ];
         };
 
@@ -79,13 +79,17 @@
 
         Ryzen5800x = nixpkgs.lib.nixosSystem {
           inherit system;
-          specialArgs = { inherit self hyprland niri home-manager; modules = hostModules; };
+          specialArgs = { 
+            inherit self hyprland niri home-manager; 
+            modules = hostModules; };
           modules = [ ./hosts/Ryzen5800x.nix ];
         };
 
         ASUSTuff-A15 = nixpkgs.lib.nixosSystem {
           inherit system;
-          specialArgs = { inherit self hyprland niri home-manager; modules = hostModules; };
+          specialArgs = { 
+            inherit self hyprland niri home-manager; 
+            modules = hostModules; };
           modules = [ ./hosts/ASUSTuff-A15.nix ];
         };
 
