@@ -193,8 +193,8 @@ reboot
 Caution: Only do this on the first boot.
 ```bash
 sudo mkdir -p ~/Documents/GitRepos
-sudo mv -R /etc/nixos ~/Documents/GitRepos/nixos-configs
-ls -ld /home/linuxury/Documents/GitRepos/nixos-configs
+sudo cp -r /etc/nixos ~/Documents/GitRepos/nixos-configs
+ls -ld ~/Documents/GitRepos/nixos-configs
 sudo chown -R $USER: ~/Documents/GitRepos/nixos-configs
 cd ~/Documents/GitRepos/nixos-configs
 git init
