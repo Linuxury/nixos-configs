@@ -1,7 +1,13 @@
-{ pkgs, lib, ... }:
+{ config, lib, pkgs, modules, ... }:
 
 {
+  #########################
+  # Gaming configuration
+  #########################
+
+  #########################
   # Steam + Proton
+  #########################
   programs.steam = {
     enable = true;
     remotePlay.openPorts = true;
@@ -9,18 +15,22 @@
     gamescopeSession.enable = true;  # Gamescope for FSR, windowed fullscreen
   };
 
+  #########################
   # 32-bit support for old games
+  #########################
   hardware.opengl.driSupport32Bit = true;
   hardware.opengl.extraPackages32 = with pkgs.pkgsi686Linux; [ libva ];
   hardware.pulseaudio.support32Bit = true;
 
-  # Gamemode (performance boost)
+  #########################
+  # Performance tools
+  #########################
   programs.gamemode.enable = true;
-
-  # Mangohud (FPS overlay)
   programs.mangohud.enable = true;
 
+  #########################
   # Extra gaming tools
+  #########################
   environment.systemPackages = with pkgs; [
     protonup-qt           # Manage Proton-GE
     gamescope
@@ -32,13 +42,17 @@
     # Optional: add heroic-games-launcher, bottles later
   ];
 
+  #########################
   # AMD-specific tweaks (RX 7900 XTX)
+  #########################
   hardware.opengl.extraPackages = with pkgs; [
     amdvlk
     rocmPackages.clr.icd
   ];
 
-  # Allow unfree for Proton-GE etc.
+  #########################
+  # Allow unfree packages
+  #########################
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
     "steam"
     "steam-original"
