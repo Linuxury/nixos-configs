@@ -104,7 +104,6 @@
   boot.kernelParams = [
     "quiet"           # Suppress standard boot messages
     "loglevel=0"      # Only show critical kernel messages
-    "systemd.show_status=0"   # Hide systemd unit status messages
   ];
 
   #########################
