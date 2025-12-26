@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ..., jovianModule ? null }:
+{ config, pkgs, lib, jovianModule ? null, ... }:
 
 {
   #########################
@@ -14,7 +14,7 @@
   # Gamemode (performance boost)
   programs.gamemode.enable = true;
 
-  # MangoHud (FPS overlay)
+  # Packages 
   environment.systemPackages = with pkgs; [
     mangohud
     protonplus
@@ -33,6 +33,7 @@
   #########################
   # Decky Loader (Jovian)
   #########################
+  # Only include overlay and enable service if jovianModule is provided
   nixpkgs.overlays = lib.mkIf (jovianModule != null) [
     jovianModule.overlay
   ];
@@ -43,7 +44,6 @@
   # AMD-specific tweaks
   #########################
   hardware.opengl.extraPackages = with pkgs; [
-    # amdvlk
     rocmPackages.clr.icd
   ];
 
@@ -59,6 +59,6 @@
   #########################
   # Firewall / networking for gaming (example)
   #########################
-  networking.firewall.allowedTCPPorts = [ 27015 27036 ]; # example ports
+  networking.firewall.allowedTCPPorts = [ 27015 27036 ];
   networking.firewall.allowedUDPPorts = [ 27015 27036 ];
 }
