@@ -89,14 +89,22 @@
   #########################
   security.polkit.enable = true;
 
-#########################
-# Boot loader configuration
-#########################
-boot.loader.systemd-boot.enable = true;
-boot.loader.efi.canTouchEfiVariables = true;
+  #########################
+  # Bootloader configuration
+  #########################
+  boot.loader = {
+    systemd-boot.enable = true;             # Use systemd-boot
+    efi.canTouchEfiVariables = true;        # Allow NixOS to update EFI entries
+    timeout = 0;                             # No delay, boot immediately
+  };
 
-# Timeout before booting default entry (0 = immediate)
-boot.loader.timeout = 0;
+  #########################
+  # Kernel boot parameters
+  #########################
+  boot.kernelParams = [
+    "quiet"           # Suppress standard boot messages
+    "loglevel=0"      # Only show critical kernel messages
+  ];
 
   #########################
   # System settings
