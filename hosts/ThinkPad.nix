@@ -6,36 +6,12 @@
   #########################
   imports = [
     modules.hardware-configuration.thinkpad
-  ];
-
-  #########################
-  # Desktop environments
-  #########################
-  imports = imports ++ [
     modules.desktop.default
     modules.desktop.cosmic
-  ];
-
-  #########################
-  # Display manager
-  #########################
-  imports = imports ++ [
     modules.display.gdm
-  ];
-
-  #########################
-  # Host-specific modules
-  #########################
-  imports = imports ++ [
     modules.host.laptop
     modules.host.gaming
     modules.host.coding
-  ];
-
-  #########################
-  # Users
-  #########################
-  imports = imports ++ [
     modules.users.linuxury
   ];
 
