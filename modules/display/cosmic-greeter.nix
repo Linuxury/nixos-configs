@@ -4,12 +4,11 @@
   #########################
   # COSMIC Greeter / Session
   #########################
-  services.xserver.enable = true;
-
   environment.systemPackages = with pkgs; [
     cosmic-greeter
+    cosmic-store
   ];
 
-  # Let COSMIC manage its own session autostart
-  services.xserver.windowManager.command = "${pkgs.cosmic}/bin/cosmic-session";
+  # Enable X server only if you need X11 fallback (Wayland preferred)
+  services.xserver.enable = false;
 }
