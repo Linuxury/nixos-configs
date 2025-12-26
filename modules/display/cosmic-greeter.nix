@@ -10,5 +10,5 @@
   ];
 
   # Enable X server only if you need X11 fallback (Wayland preferred)
-  services.xserver.enable = false;
+  services.xserver.enable = lib.mkForce false;
 }
