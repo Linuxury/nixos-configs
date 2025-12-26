@@ -15,7 +15,6 @@
     hostModules.host.performance-cpu
     hostModules.host.performance-amd
     hostModules.host.gaming
-    hostModules.host.coding
 
     hostModules.users.babylinux
   ];
