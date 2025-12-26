@@ -5,23 +5,25 @@
   # GNOME Desktop Environment
   #########################
   services.xserver.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
+
+  services.desktopManager.gnome.enable = true;
 
   #########################
-  # GNOME Extensions / Tweaks
+  # GNOME Extras / Tweaks
   #########################
   environment.systemPackages = with pkgs; [
     gnome-tweaks
-    gnome-extensions-app
+    gnome-terminal
+    nautilus
+    evince
+    gnome-calculator
+    gnome-system-monitor
+    gnome-disk-utility
+    flatpak
   ];
 
   #########################
-  # Optional GNOME apps
+  # Wayland support
   #########################
-  environment.systemPackages = environment.systemPackages ++ with pkgs; [
-    evince        # PDF reader
-    gedit         # Text editor
-    nautilus      # File manager
-    gnome-terminal
-  ];
+  services.xserver.desktopManager.gnome.wayland = true;
 }
