@@ -22,25 +22,20 @@
   hardware.opengl.extraPackages32 = with pkgs.pkgsi686Linux; [ libva ];
   hardware.pulseaudio.support32Bit = true;
 
-  #########################
-  # Performance tools
-  #########################
-  programs.gamemode.enable = true;
-  programs.mangohud.enable = true;
+#########################
+# Gaming tools
+#########################
+environment.systemPackages = with pkgs; [
+  mangohud
+  gamemode
+  protonup-qt           # Manage Proton-GE
+  gamescope
+  lutris                # For non-Steam games
+  wineWowPackages.stable  # Wine for Windows games
+  winetricks
+  # Optional: add heroic-games-launcher, bottles later
+];
 
-  #########################
-  # Extra gaming tools
-  #########################
-  environment.systemPackages = with pkgs; [
-    protonup-qt           # Manage Proton-GE
-    gamescope
-    mangohud
-    gamemode
-    lutris                # For non-Steam games
-    wineWowPackages.stable  # Wine for Windows games
-    winetricks
-    # Optional: add heroic-games-launcher, bottles later
-  ];
 
   #########################
   # AMD-specific tweaks (RX 7900 XTX)
