@@ -1,4 +1,4 @@
-{ config, lib, pkgs, modules, ... }:
+{ config, lib, pkgs, modules, inputs, jovianModule, ... }:
 
 {
   #########################
@@ -31,6 +31,7 @@
     modules.host.performance-cpu
     modules.host.performance-amd    # AMD GPU
     # modules.host.performance-nvidia   # only uncomment if NVIDIA exists
+    jovianModule
   ];
 
   #########################
