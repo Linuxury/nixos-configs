@@ -1,42 +1,21 @@
-{ config, lib, pkgs, modules, inputs, jovianModule, ... }:
+{ config, lib, pkgs, hostModules, ... }:
 
 {
   #########################
-  # Hardware configuration
+  # Imports
   #########################
   imports = [
-    modules.hardware-configuration.alex-laptop
-  ];
+    hostModules.hardware-configuration.default
 
-  #########################
-  # Desktop environments
-  #########################
-  imports = imports ++ [
-    modules.desktop.default
-    modules.desktop.cosmic
-  ];
+    hostModules.desktop.default
+    hostModules.desktop.cosmic
 
-  #########################
-  # Display manager
-  #########################
-  imports = imports ++ [
-    modules.display.gdm
-  ];
+    hostModules.display.gdm
 
-  #########################
-  # Host-specific modules
-  #########################
-  imports = imports ++ [
-    modules.host.laptop
-    modules.host.gaming
-    jovianModule
-  ];
+    hostModules.host.laptop
+    hostModules.host.gaming
 
-  #########################
-  # Users
-  #########################
-  imports = imports ++ [
-    modules.users.alex
+    hostModules.users.alex
   ];
 
   #########################
@@ -47,9 +26,15 @@
   #########################
   # Time & Locale
   #########################
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
   time.timeZone = "America/New_York";
+
+  #########################
+  # System state version
+  #########################
   system.stateVersion = "25.11";
+
+  #########################
+  # Nix experimental features
+  #########################
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 }
-
-
