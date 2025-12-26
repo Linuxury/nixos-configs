@@ -33,11 +33,7 @@
   #########################
   # Decky Loader (Jovian)
   #########################
-  # Only include overlay and enable service if jovianModule is provided
-  nixpkgs.overlays = lib.mkIf (jovianModule != null) [
-    jovianModule.overlay
-  ];
-
+  nixpkgs.overlays = lib.mkIf (jovianModule != null) [ jovianModule.overlay ];
   services.decky-loader.enable = lib.mkIf (jovianModule != null) true;
 
   #########################
