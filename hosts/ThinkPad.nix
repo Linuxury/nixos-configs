@@ -1,4 +1,4 @@
-{ config, lib, pkgs, modules, inputs, jovianModule, ... }:
+{ config, lib, pkgs, ..., jovianModule ? null }:
 
 {
   #########################
@@ -13,7 +13,6 @@
     modules.host.gaming
     modules.host.coding
     modules.users.linuxury
-    jovianModule
   ];
 
   #########################
