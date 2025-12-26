@@ -1,4 +1,4 @@
-{ config, lib, pkgs, jovianModule ? null, ... }:
+{ config, lib, pkgs, modules, jovianModule ? null, ... }:
 
 {
   #########################
