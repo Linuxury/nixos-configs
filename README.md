@@ -189,14 +189,70 @@ umount -R /mnt
 reboot
 ```
 
-## Post-Install (Optional)
-
- - Change user passwords
- - Add Flathub:
+## Move project to Documents
+On the first boot only:
 ```bash
-flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+sudo mkdir -p ~/Documents/GitRepos
+sudo mv -r /etc/nixos ~/Documents/GitRepos/nixos-configs
+ls -ld /home/linuxury/Documents/GitRepos/nixos-configs
+sudo chown -R $USER: ~/Documents/GitRepos/nixos-configs
+cd ~/Documents/GitRepos/nixos-configs
+git init
+git add .
+git commit -m "Initial NixOS install"
 ```
- - Install Proton-GE via COSMIC Store → ProtonUp-Qt
+
+Then:
+```bash
+sudo rm -rf /etc/nixos
+sudo ln -s ~/Documents/GitRepos/nixos-configs /etc/nixos
+```
+
+Verify:
+```bash
+ls -l /etc/nixos
+```
+
+Should show a symlink.
+
+## Sync with GitHub after moving the project
+From inside the repo:
+```bash
+git fetch origin
+git reset --hard origin/main
+```
+
+This will:
+ - Discard your 1 local commit
+ - Make your working tree identical to GitHub’s main
+ - Leave no divergence
+ - Avoid any merge or rebase logic
+
+After this:
+```bash
+git status
+```
+
+Should show:
+```bash
+On branch main
+Your branch is up to date with 'origin/main'.
+nothing to commit, working tree clean
+```
+Optional cleanup:
+```bash
+git pull --prune
+```
+Then proceed normally
+
+Now you can rebuild without Git noise:
+```bash
+sudo nixos-rebuild switch --flake ~/Documents/GitRepos/nixos-configs#ThinkPad
+```
+or for a short you could use the allias
+```bash
+rebuild
+```
 
 ## Rollback
 
