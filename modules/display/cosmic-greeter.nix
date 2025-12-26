@@ -2,7 +2,7 @@
 
 {
   #########################
-  # Cosmic greeter (example)
+  # Cosmic Greeter
   #########################
-  services.xserver.displayManager.cosmic.enable = true;
+  services.xserver.displayManager.cosmicGreeter.enable = true;
 }
