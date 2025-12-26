@@ -6,12 +6,17 @@
   #########################
   programs.steam.enable = true;
 
+  # 32-bit support for old games
   hardware.opengl.driSupport32Bit = true;
   hardware.opengl.extraPackages32 = with pkgs.pkgsi686Linux; [ libva ];
   hardware.pulseaudio.support32Bit = true;
 
+  # Gamemode (performance boost)
   programs.gamemode.enable = true;
 
+  #########################
+  # Gaming packages
+  #########################
   environment.systemPackages = with pkgs; [
     mangohud
     protonplus
@@ -30,7 +35,10 @@
   #########################
   # Decky Loader (Jovian)
   #########################
-  nixpkgs.overlays = lib.mkIf (jovianModule != null) [ jovianModule.overlay ];
+  nixpkgs.overlays = lib.optional (jovianModule != null) [
+    jovianModule.overlay
+  ];
+
   services.decky-loader.enable = lib.mkIf (jovianModule != null) true;
 
   #########################
