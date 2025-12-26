@@ -5,14 +5,14 @@
   # Hardware configuration
   #########################
   imports = [
-    modules.hardware-configuration.thinkpad
-    modules.desktop.default
-    modules.desktop.cosmic
-    modules.display.gdm
-    modules.host.laptop
-    modules.host.gaming
-    modules.host.coding
-    modules.users.linuxury
+    hostModules.hardware-configuration.thinkpad
+    hostModules.desktop.default
+    hostModules.desktop.cosmic
+    hostModules.display.gdm
+    hostModules.host.laptop
+    hostModules.host.gaming
+    hostModules.host.coding
+    hostModules.users.linuxury
   ] ++ lib.optional (jovianModule != null) [ jovianModule.default ];
 
   #########################
