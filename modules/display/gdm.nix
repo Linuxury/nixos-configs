@@ -1,15 +1,14 @@
-{ lib, ... }:
+{ config, pkgs, ... }:
 
 {
-  services.greetd.enable = lib.mkForce false;
+  #########################
+  # GNOME Display Manager
+  #########################
+  services.displayManager.gdm.enable = true;
+  services.displayManager.gdm.wayland = true;
 
-  services.xserver.enable = true;
-
-  services.displayManager.gdm = {
-    enable = true;
-    wayland = true;
-  };
-
-  # Safety: ensure no cosmic greeter leaks in
-  services.displayManager.cosmic-greeter.enable = lib.mkForce false;
+  #########################
+  # Disable greetd/other greeters if present
+  #########################
+  services.displayManager.cosmic-greeter.enable = false;
 }
