@@ -22,6 +22,12 @@
     lutris
     wineWowPackages.stable
     winetricks
+    goverlay
+    lsfg-vk
+    lsfg-vk-ui
+    faugus-launcher
+    mcpelauncher-ui-qt
+    mcpelauncher-client
   ];
 
   #########################
