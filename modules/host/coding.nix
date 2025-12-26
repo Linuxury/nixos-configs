@@ -1,41 +1,23 @@
-{ config, pkgs, lib, ... }:
+{ pkgs, lib, ... }:
 
 {
-#########################
-# Coding tools
-#########################
-environment.systemPackages = with pkgs; [
-  python310      # Python 3.10 (or pkgs.python310Full if you want full stdlib)
-  python310Packages.pip
-  rustc          # Rust compiler
-  cargo          # Rust package manager
-  zed-editor
-  helix
-  neovim
-  git
-  tree
-];
-
-
   #########################
-  # Python environment
+  # Coding tools
   #########################
-  programs.python = {
-    enable = true;
-    packages = ps: with ps; [
-      numpy
-      pandas
-      requests
-      black
-      mypy
-    ];
-  };
+  environment.systemPackages = with pkgs; [
+    python310
+    python310Packages.pip
+    rustc
+    cargo
+    helix
+    zed-editor
+    neovim
+    git
+    tree
+  ];
 
   #########################
-  # Rust environment
+  # Shell
   #########################
-  programs.rust = {
-    enable = true;
-    cargoHome = "/home/linuxury/.cargo";
-  };
+  programs.fish.enable = true;
 }
