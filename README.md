@@ -120,7 +120,7 @@ parted /dev/nvme0n1 -- mkpart primary 513MiB 100%
 Labels are more stable than UUIDs.
 ```bash
 mkfs.fat -F32 -n EFI /dev/nvme0n1p1
-mkfs.btrfs -f -L nixos /dev/nvme0n1p2
+mkfs.btrfs -f -L nixos /dev/nvme0n1p2  # Create main Btrfs volume
 ```
 
 Verify:
@@ -162,7 +162,7 @@ mount /dev/disk/by-label/EFI /mnt/boot
 
 ## 10. Create Swapfile
 ```bash
-btrfs filesystem mkswapfile --size 8g /mnt/swap/swapfile
+btrfs filesystem mkswapfile --size 8G /mnt/swap/swapfile
 swapon /mnt/swap/swapfile
 ```
 
@@ -190,10 +190,10 @@ reboot
 ```
 
 ## Move project to Documents
-On the first boot only:
+Caution: Only do this on the first boot.
 ```bash
 sudo mkdir -p ~/Documents/GitRepos
-sudo mv -r /etc/nixos ~/Documents/GitRepos/nixos-configs
+sudo mv -R /etc/nixos ~/Documents/GitRepos/nixos-configs
 ls -ld /home/linuxury/Documents/GitRepos/nixos-configs
 sudo chown -R $USER: ~/Documents/GitRepos/nixos-configs
 cd ~/Documents/GitRepos/nixos-configs
