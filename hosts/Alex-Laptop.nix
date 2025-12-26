@@ -29,8 +29,6 @@
   imports = imports ++ [
     modules.host.laptop
     modules.host.gaming
-    # modules.host.performance-amd    # AMD GPU
-    # modules.host.performance-nvidia   # only if NVIDIA exists
   ];
 
   #########################
@@ -52,3 +50,4 @@
   time.timeZone = "America/New_York";
   system.stateVersion = "25.11";
 }
+
