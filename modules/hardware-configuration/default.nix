@@ -2,7 +2,14 @@
 
 {
   #########################
-  # Kernel & initrd modules
+  # Installer fallback
+  #########################
+  imports = [
+    ./installer/scan/not-detected.nix
+  ];
+
+  #########################
+  # Kernel modules
   #########################
   boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "thunderbolt" "usb_storage" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
