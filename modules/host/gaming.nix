@@ -1,44 +1,31 @@
-{ config, lib, pkgs, modules, ... }:
+{ pkgs, lib, ... }:
 
 {
   #########################
-  # Gaming configuration
+  # Gaming tools
   #########################
+  programs.steam.enable = true;
 
-  #########################
-  # Steam + Proton
-  #########################
-  programs.steam = {
-    enable = true;
-    remotePlay.openPorts = true;
-    dedicatedServer.openPorts = true;
-    gamescopeSession.enable = true;  # Gamescope for FSR, windowed fullscreen
-  };
-
-  #########################
   # 32-bit support for old games
-  #########################
   hardware.opengl.driSupport32Bit = true;
   hardware.opengl.extraPackages32 = with pkgs.pkgsi686Linux; [ libva ];
   hardware.pulseaudio.support32Bit = true;
 
-#########################
-# Gaming tools
-#########################
-environment.systemPackages = with pkgs; [
-  mangohud
-  gamemode
-  protonup-qt           # Manage Proton-GE
-  gamescope
-  lutris                # For non-Steam games
-  wineWowPackages.stable  # Wine for Windows games
-  winetricks
-  # Optional: add heroic-games-launcher, bottles later
-];
+  # Gamemode (performance boost)
+  programs.gamemode.enable = true;
 
+  # MangoHud (FPS overlay)
+  environment.systemPackages = with pkgs; [
+    mangohud
+    protonup-qt
+    gamescope
+    lutris
+    wineWowPackages.stable
+    winetricks
+  ];
 
   #########################
-  # AMD-specific tweaks (RX 7900 XTX)
+  # AMD-specific tweaks
   #########################
   hardware.opengl.extraPackages = with pkgs; [
     amdvlk
@@ -46,11 +33,17 @@ environment.systemPackages = with pkgs; [
   ];
 
   #########################
-  # Allow unfree packages
+  # Unfree packages
   #########################
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
     "steam"
     "steam-original"
     "steam-run"
   ];
+
+  #########################
+  # Firewall / networking for gaming (example)
+  #########################
+  networking.firewall.allowedTCPPorts = [ 27015 27036 ]; # example ports
+  networking.firewall.allowedUDPPorts = [ 27015 27036 ];
 }
