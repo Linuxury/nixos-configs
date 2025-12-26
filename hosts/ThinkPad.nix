@@ -5,7 +5,7 @@
   # Imports
   #########################
   imports = [
-    hostModules.hardware-configuration.thinkpad
+    hostModules.hardware-configuration.default
 
     hostModules.desktop.default
     hostModules.desktop.cosmic
