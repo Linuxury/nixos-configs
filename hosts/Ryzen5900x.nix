@@ -1,45 +1,23 @@
-{ config, lib, pkgs, modules, inputs, jovianModule, ... }:
+{ config, lib, pkgs, hostModules, ... }:
 
 {
   #########################
-  # Hardware configuration
+  # Imports
   #########################
   imports = [
-    modules.hardware-configuration.ryzen5900x
-  ];
+    hostModules.hardware-configuration.default
 
-  #########################
-  # Desktop environments
-  #########################
-  imports = imports ++ [
-    modules.desktop.default
-    modules.desktop.cosmic
-  ];
+    hostModules.desktop.default
+    hostModules.desktop.cosmic
 
-  #########################
-  # Display manager
-  #########################
-  imports = imports ++ [
-    modules.display.gdm
-  ];
+    hostModules.display.gdm
 
-  #########################
-  # Host-specific modules
-  #########################
-  imports = imports ++ [
-    modules.host.gaming
-    modules.host.coding
-    modules.host.performance-cpu
-    modules.host.performance-amd    # uncomment if AMD GPU exists
-    # modules.host.performance-nvidia   # only on hosts with NVIDIA
-    jovianModule
-  ];
+    hostModules.host.performance-cpu
+    hostModules.host.performance-amd
+    hostModules.host.gaming
+    hostModules.host.coding
 
-  #########################
-  # Users
-  #########################
-  imports = imports ++ [
-    modules.users.linuxury
+    hostModules.users.linuxury
   ];
 
   #########################
@@ -50,7 +28,15 @@
   #########################
   # Time & Locale
   #########################
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
   time.timeZone = "America/New_York";
+
+  #########################
+  # System state version
+  #########################
   system.stateVersion = "25.11";
+
+  #########################
+  # Nix experimental features
+  #########################
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 }
