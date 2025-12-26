@@ -13,7 +13,7 @@
     niri.url = "github:sodiboo/niri-flake";
   };
 
-  outputs = { self, nixpkgs, home-manager, hyprland, niri, ... }:
+  outputs = { self, nixpkgs, home-manager, hyprland, niri, jovian, ... }:
     let
       system = "x86_64-linux";
 
