@@ -98,9 +98,6 @@ boot.loader.efi.canTouchEfiVariables = true;
 # Make boot menu hidden unless an error occurs
 boot.loader.systemd-boot.timeout = 0;         # no delay
 boot.loader.systemd-boot.autoTimeout = true;  # boot immediately to default entry
-boot.loader.systemd-boot.consoleMode = "max"; # maximize console output (optional)
-boot.loader.efi.editor = false;               # disable boot entry editor
-
 
   #########################
   # System settings
