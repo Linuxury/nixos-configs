@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ config, pkgs, lib, ..., jovianModule ? null }:
 
 {
   #########################
@@ -33,7 +33,6 @@
   #########################
   # Decky Loader (Jovian)
   #########################
-  # Only include overlay and enable service if jovianModule is provided
   nixpkgs.overlays = lib.mkIf (jovianModule != null) [
     jovianModule.overlay
   ];
