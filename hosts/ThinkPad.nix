@@ -1,4 +1,4 @@
-{ config, lib, pkgs, modules, inputs, ... }:
+{ config, lib, pkgs, modules, inputs, jovianModule, ... }:
 
 {
   #########################
