@@ -1,9 +1,16 @@
-{ config, pkgs, lib, ... }:
+{ pkgs, lib, ... }:
 
 {
   #########################
-  # Cosmic Greeter
+  # COSMIC Greeter / Session
   #########################
-  # services.xserver.displayManager.cosmicGreeter.enable = true;
-  environment.systemPackages = with pkgs; [ cosmic-greeter ];
+  environment.systemPackages = with pkgs; [
+    cosmic-greeter
+  ];
+
+  # Enable X server for graphical sessions
+  services.xserver.enable = true;
+
+  # Optional: allow COSMIC to manage its own session autostart
+  services.xserver.windowManager.command = "${pkgs.cosmic}/bin/cosmic-session";
 }
