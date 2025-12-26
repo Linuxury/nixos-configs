@@ -1,4 +1,4 @@
-{ config, pkgs, lib, jovianModule ? null, ... }:
+{ config, lib, pkgs, ... }:
 
 {
   #########################
@@ -31,15 +31,6 @@
     mcpelauncher-ui-qt
     mcpelauncher-client
   ];
-
-  #########################
-  # Decky Loader (Jovian)
-  #########################
-  nixpkgs.overlays = lib.optional (jovianModule != null) [
-    jovianModule.overlay
-  ];
-
-  services.decky-loader.enable = lib.mkIf (jovianModule != null) true;
 
   #########################
   # AMD-specific tweaks
