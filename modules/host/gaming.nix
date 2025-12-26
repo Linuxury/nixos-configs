@@ -31,6 +31,18 @@
   ];
 
   #########################
+  # Decky Loader (Steam Deck plugin loader)
+  #########################
+
+  jovian.decky-loader.enable = true;
+
+  # Optional: add extra deps
+  jovian.decky-loader.extraPackages = [
+    pkgs.python3
+    pkgs.flatpak
+  ];
+
+  #########################
   # AMD-specific tweaks
   #########################
   hardware.opengl.extraPackages = with pkgs; [
