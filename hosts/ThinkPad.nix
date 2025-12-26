@@ -27,6 +27,7 @@
   # Host-specific modules
   #########################
   imports = imports ++ [
+    modules.host.laptop
     modules.host.gaming
     modules.host.coding
   ];
