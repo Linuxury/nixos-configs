@@ -13,7 +13,7 @@
     hostModules.host.gaming
     hostModules.host.coding
     hostModules.users.linuxury
-  ] ++ lib.optional (jovianModule != null) [ jovianModule.default ];
+  ] 
 
   #########################
   # Networking
