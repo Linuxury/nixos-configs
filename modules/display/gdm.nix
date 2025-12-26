@@ -1,14 +1,9 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   #########################
-  # GNOME Display Manager
+  # Display manager
   #########################
-  services.displayManager.gdm.enable = true;
-  services.displayManager.gdm.wayland = true;
-
-  #########################
-  # Disable greetd/other greeters if present
-  #########################
-  services.displayManager.cosmic-greeter.enable = false;
+  services.xserver.displayManager.gdm.enable = true;
+  services.xserver.desktopManager.gnome.enable = true;
 }
