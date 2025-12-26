@@ -106,6 +106,18 @@
     "loglevel=0"      # Only show critical kernel messages
   ];
 
+#########################
+# SSH
+#########################
+services.openssh = {
+  enable = true;
+  settings = {
+    PermitRootLogin = "no";       # or "yes" if you truly need it
+    PasswordAuthentication = true;
+  };
+};
+
+
   #########################
   # System settings
   #########################
