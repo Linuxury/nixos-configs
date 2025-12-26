@@ -63,13 +63,17 @@
       nixosConfigurations = {
         ThinkPad = nixpkgs.lib.nixosSystem {
           inherit system;
-          specialArgs = { inherit self hyprland niri home-manager hostModules; modules = hostModules; };
+          specialArgs = { 
+            inherit self hyprland niri home-manager hostModules; 
+            hostModules = hostModules; };
           modules = [ ./hosts/ThinkPad.nix ];
         };
 
         Ryzen5900x = nixpkgs.lib.nixosSystem {
           inherit system;
-          specialArgs = { inherit self hyprland niri home-manager; modules = hostModules; };
+          specialArgs = { 
+            inherit self hyprland niri home-manager; 
+            modules = hostModules; };
           modules = [ ./hosts/Ryzen5900x.nix ];
         };
 
