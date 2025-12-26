@@ -12,6 +12,7 @@
     topgrade
     starship
     git
+    htop
     gnome-disk-utility  # for managing disks safely
     # Add more global packages here as needed
   ];
