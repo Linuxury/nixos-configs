@@ -19,7 +19,7 @@
 
 hostModules = {
   # Hardware configuration
-  hardware-configuration.thinkpad = ./modules/hardware-configuration/thinkpad.nix;
+  hardware-configuration.thinkpad = ./hardware-configuration/thinkpad.nix;
 
   # Display managers
   display.gdm          = ./modules/display/gdm.nix;
@@ -36,6 +36,10 @@ hostModules = {
   # Host-specific modules
   host.laptop          = ./modules/host/laptop.nix;
   host.gaming          = ./modules/host/gaming.nix;
+  host.coding          = ./modules/host/coding.nix;
+  host.performance-cpu = ./modules/host/performance-cpu.nix;
+  host.performance-amd = ./modules/host/performance-amd.nix;
+  host.performance-nvidia = ./modules/host/performance-nvidia.nix;
 
   # Users
   users.linuxury       = ./modules/users/linuxury.nix;
@@ -45,6 +49,7 @@ hostModules = {
   # Snapper
   snapper              = ./modules/snapper.nix;
 };
+
 
     in {
       nixosConfigurations = {
