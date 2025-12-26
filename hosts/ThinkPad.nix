@@ -1,23 +1,23 @@
-{ config, lib, pkgs, ... , jovianModule ? null }:
+{ config, lib, pkgs, hostModules, ... }:
 
-let
-  # Optional reference to jovianModule overlay
-  enableDecky = jovianModule != null;
-in
 {
   #########################
-  # Hardware configuration
+  # Imports
   #########################
   imports = [
-    ./modules/hardware-configuration/thinkpad.nix
-    ./modules/desktop/default.nix
-    ./modules/desktop/cosmic.nix
-    ./modules/display/gdm.nix
-    ./modules/host/laptop.nix
-    ./modules/host/gaming.nix
-    ./modules/host/coding.nix
-    ./modules/users/linuxury.nix
-  ] ++ lib.optional enableDecky [ jovianModule.default ];
+    hostModules.hardware-configuration.thinkpad
+
+    hostModules.desktop.default
+    hostModules.desktop.cosmic
+
+    hostModules.display.gdm
+
+    hostModules.host.laptop
+    hostModules.host.gaming
+    hostModules.host.coding
+
+    hostModules.users.linuxury
+  ];
 
   #########################
   # Networking
@@ -27,7 +27,15 @@ in
   #########################
   # Time & Locale
   #########################
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
   time.timeZone = "America/New_York";
+
+  #########################
+  # System state version
+  #########################
   system.stateVersion = "25.11";
+
+  #########################
+  # Nix experimental features
+  #########################
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 }
