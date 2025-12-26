@@ -1,7 +1,13 @@
 { pkgs, lib, ... }:
 
 {
-  # TLP — advanced power management
+  #########################
+  # Laptop-specific configuration
+  #########################
+
+  #########################
+  # Power Management
+  #########################
   services.tlp = {
     enable = true;
     settings = {
@@ -29,23 +35,31 @@
     };
   };
 
-  # Force disable power-profiles-daemon (conflicts with TLP)
+  # Disable power-profiles-daemon to prevent conflict with TLP
   services.power-profiles-daemon.enable = lib.mkForce false;
 
-  # Thermald — prevent overheating
+  #########################
+  # Thermal Management
+  #########################
   services.thermald.enable = true;
 
-  # Auto-suspend on lid close
+  #########################
+  # Lid & Suspend Behavior
+  #########################
   services.logind.lidSwitch = "suspend";
   services.logind.lidSwitchExternalPower = "suspend";
   services.logind.lidSwitchDocked = "ignore";
 
-  # Better touchpad support
+  #########################
+  # Input Devices
+  #########################
   services.libinput.enable = true;
   services.libinput.touchpad.naturalScrolling = true;
   services.libinput.touchpad.tapping = true;
 
-  # Extra laptop tools
+  #########################
+  # Extra Tools
+  #########################
   environment.systemPackages = with pkgs; [
     acpi
     powertop
