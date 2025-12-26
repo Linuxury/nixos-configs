@@ -10,7 +10,7 @@
     hostModules.desktop.default
     hostModules.desktop.cosmic
 
-    hostModules.display.cosmic-greeter
+    hostModules.display.cosmicGreeter
 
     hostModules.host.performance-cpu
     hostModules.host.performance-amd
