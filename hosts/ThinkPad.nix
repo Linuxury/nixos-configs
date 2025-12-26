@@ -1,19 +1,19 @@
-{ config, lib, pkgs, hostModules, jovianModule ? null, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   #########################
   # Hardware configuration
   #########################
   imports = [
-    hostModules.hardware-configuration.thinkpad
-    hostModules.desktop.default
-    hostModules.desktop.cosmic
-    hostModules.display.gdm
-    hostModules.host.laptop
-    hostModules.host.gaming
-    hostModules.host.coding
-    hostModules.users.linuxury
-  ] 
+    ../../modules/hardware-configuration/thinkpad.nix
+    ../../modules/desktop/default.nix
+    ../../modules/desktop/cosmic.nix
+    ../../modules/display/gdm.nix
+    ../../modules/host/laptop.nix
+    ../../modules/host/gaming.nix
+    ../../modules/host/coding.nix
+    ../../modules/users/linuxury.nix
+  ];
 
   #########################
   # Networking
