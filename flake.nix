@@ -57,7 +57,7 @@
         inherit system;
 
         specialArgs = {
-          inherit self hyprland niri home-manager jovian;
+          inherit self hyprland niri home-manager;
           jovianModule = jovian.nixosModules.default;
           modules = hostModules;
         };
