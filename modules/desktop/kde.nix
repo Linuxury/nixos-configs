@@ -1,17 +1,23 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 {
-  # KDE Plasma 6
+  #########################
+  # KDE Plasma 6 Desktop Environment
+  #########################
   services.xserver.enable = true;
-  services.displayManager.sddm.enable = true;
-  services.displayManager.sddm.wayland.enable = true;
+
+  # Enable Plasma 6 instead of plasma5
   services.desktopManager.plasma6.enable = true;
 
-  # Required for KDE apps
+  #########################
+  # KDE Essential Apps / Tweaks
+  #########################
   environment.systemPackages = with pkgs; [
-    kdePackages.dolphin
-    kdePackages.kate
-    kdePackages.okular
-    # Add more KDE apps if wanted
+    konsole
+    dolphin
+    kate
+    kdeconnect
+    kdenlive
+    okular
   ];
 }
