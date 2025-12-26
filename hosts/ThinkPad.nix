@@ -15,6 +15,7 @@
     hostModules.host.laptop
     hostModules.host.gaming
     hostModules.host.coding
+    hostModules.host.performance-amd
 
     hostModules.users.linuxury
   ];
