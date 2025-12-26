@@ -1,12 +1,6 @@
 { config, lib, pkgs, ... }:
 
 {
-  #########################
-  # Installer fallback
-  #########################
-  imports = [
-    ./installer/scan/not-detected.nix
-  ];
 
   #########################
   # Kernel modules
