@@ -13,7 +13,7 @@
     modules.host.gaming
     modules.host.coding
     modules.users.linuxury
-    inputs.jovian.nixosModules.default
+    jovian.nixosModules.default
   ];
 
   #########################
