@@ -32,7 +32,6 @@ services.gnome.gnome-keyring.enable = true;
 
 # Auto-start nm-applet tray icon in Wayland sessions (works great in COSMIC)
 programs.nm-applet.enable = true;
-];
 
   #########################
   # COSMIC Store + Flatpak
