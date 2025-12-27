@@ -98,20 +98,19 @@
             ];
           };
 
-          systemd = {
-            extraConfig = ''
-              # Disable watchdogs to prevent "watchdog did not stop!" message
-              RuntimeWatchdogSec=0
-              RebootWatchdogSec=0
-              KExecWatchdogSec=0
+          # New way (post-deprecation) to configure systemd manager settings
+          systemd.settings.Manager = {
+            # Disable watchdogs to prevent "watchdog did not stop!" message
+            RuntimeWatchdogSec = "0";
+            RebootWatchdogSec = "0";
+            KExecWatchdogSec = "0";
 
-              # Speed up shutdown by reducing service stop timeout
-              DefaultTimeoutStopSec=10s
-            '';
-
-            # Prevent NetworkManager from delaying shutdown
-            services.NetworkManager-wait-online.enable = false;
+            # Speed up shutdown by reducing default service stop timeout
+            DefaultTimeoutStopSec = "10s";
           };
+
+          # Prevent NetworkManager from delaying shutdown/reboot
+          systemd.services.NetworkManager-wait-online.enable = false;
         }
       ];
 
