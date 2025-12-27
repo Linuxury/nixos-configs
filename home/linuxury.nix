@@ -6,6 +6,8 @@
 
   home.stateVersion = "25.11";
 
+  # Test edit with Zed – local workflow works!
+
   # Personal packages (only for you)
   home.packages = with pkgs; [
     helix
