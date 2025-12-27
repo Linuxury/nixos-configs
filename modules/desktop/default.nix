@@ -34,7 +34,7 @@
     enable = true;
     shellAliases = {
       rebuild-t14s = "sudo git -C ~/Documents/GitRepos/nixos-configs pull && sudo nixos-rebuild switch --flake ~/Documents/GitRepos/nixos-configs#ThinkPad";
-      rebuild-r9 = "sudo git -C ~/Documents/GitRepos/nixos-configs pull && sudo nixos-rebuild switch --flake ~/Documents/GitRepos/nixos-configs#Ryzen5900x"
+      rebuild-r9 = "sudo git -C ~/Documents/GitRepos/nixos-configs pull && sudo nixos-rebuild switch --flake ~/Documents/GitRepos/nixos-configs#Ryzen5900x";
       rebuild-r7 = "sudo git -C ~/Documents/GitRepos/nixos-configs pull && sudo nixos-rebuild switch --flake ~/Documents/GitRepos/nixos-configs#Ryzen5800x";
       rebuild-a15 = "sudo git -C ~/Documents/GitRepos/nixos-configs pull && sudo nixos-rebuild switch --flake ~/Documents/GitRepos/nixos-configs#ASUSTuff-A15";
       rebuild-ad = "sudo git -C ~/Documents/GitRepos/nixos-configs pull && sudo nixos-rebuild switch --flake ~/Documents/GitRepos/nixos-configs#Alex-Desktop";
