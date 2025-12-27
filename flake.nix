@@ -69,53 +69,47 @@
       commonModules = [
         # Home Manager integration
         home-manager.nixosModules.home-manager
-
-#########################
-# Enable non-free firmware for Intel WiFi (fixes detection on modern cards)
-#########################
-hardware.enableRedistributableFirmware = true;
-hardware.firmware = [ pkgs.linux-firmware ];  # Latest firmware package
-
-        #########################
-        # Clean & quiet boot with Plymouth splash + watchdog fixes
-        #########################
-        {
-          boot = {
-            plymouth = {
-              enable = true;
-              theme = "breeze";  # NixOS automatically provides a branded Breeze theme – no extra packages needed!
-            };
-
-            consoleLogLevel = 0;
-            initrd.verbose = false;
-
-            kernelParams = [
-              "quiet"
-              "splash"
-              "loglevel=3"
-              "rd.systemd.show_status=auto"
-              "rd.udev.log_priority=3"
-              "udev.log_priority=3"
-              "vt.global_cursor_default=0"
-              "nowatchdog"
-            ];
-          };
-
-          # New way to configure systemd manager settings (watchdog + timeouts)
-          systemd.settings.Manager = {
-            # Disable watchdogs to prevent "watchdog did not stop!" message
-            RuntimeWatchdogSec = "0";
-            RebootWatchdogSec = "0";
-            KExecWatchdogSec = "0";
-
-            # Speed up shutdown by reducing default service stop timeout
-            DefaultTimeoutStopSec = "10s";
-          };
-
-          # Prevent NetworkManager from delaying shutdown/reboot
-          systemd.services.NetworkManager-wait-online.enable = false;
-        }
       ];
+
+
+#########################
+# Clean & quiet boot with Plymouth splash + watchdog fixes
+#########################
+{
+  boot = {
+    plymouth = {
+      enable = true;
+      theme = "breeze";
+    };
+
+    consoleLogLevel = 0;
+    initrd.verbose = false;
+
+    kernelParams = [
+      "quiet"
+      "splash"
+      "loglevel=3"
+      "rd.systemd.show_status=auto"
+      "rd.udev.log_priority=3"
+      "udev.log_priority=3"
+      "vt.global_cursor_default=0"
+      "nowatchdog"
+    ];
+  };
+
+  # Add these two lines here (inside the { ... })
+  hardware.enableRedistributableFirmware = true;  # Enables non-free Intel WiFi firmware (critical for your AX211 card)
+  hardware.firmware = [ pkgs.linux-firmware ];    # Ensures the absolute latest firmware versions
+
+  systemd.settings.Manager = {
+    RuntimeWatchdogSec = "0";
+    RebootWatchdogSec = "0";
+    KExecWatchdogSec = "0";
+    DefaultTimeoutStopSec = "10s";
+  };
+
+  systemd.services.NetworkManager-wait-online.enable = false;
+}
 
     in {
 
