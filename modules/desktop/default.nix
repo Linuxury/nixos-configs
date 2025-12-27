@@ -14,8 +14,17 @@
     git
     htop
     gnome-disk-utility  # for managing disks safely
-    # Add more global packages here as needed
+    fluent-reader
+    readest
+    openrgb-with-all-plugins
   ];
+
+  # Proper OpenRGB setup with AMD-specific i2c support
+    services.hardware.openrgb = {
+    enable = true;
+    package = pkgs.openrgb-with-all-plugins;  # Uses the all-plugins variant
+    motherboard = "amd";  # Loads i2c-piix4 module for SMBus access on AMD systems
+  };
 
   #########################
   # Shell configuration
