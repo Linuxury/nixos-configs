@@ -22,6 +22,20 @@
     pulse.enable = true;
   };
 
+#########################
+# NetworkManager applet for reliable WiFi in COSMIC
+#########################
+networking.networkManager.enable = true;  # Ensure NM is enabled (you probably already have this somewhere)
+
+services.gnome.gnome-keyring.enable = true;  # Needed for password prompts/secrets
+
+environment.systemPackages = with pkgs; [
+  networkmanagerapplet  # nm-applet tray icon
+];
+
+# Auto-start nm-applet on COSMIC (Wayland) sessions
+programs.nm-applet.enable = true;
+
   #########################
   # COSMIC Store + Flatpak
   #########################
