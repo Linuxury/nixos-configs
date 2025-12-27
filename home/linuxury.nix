@@ -6,11 +6,8 @@
 
   home.stateVersion = "25.11";
 
-  # Test edit with Zed – local workflow works!!
-
   # Personal packages (only for you)
   home.packages = with pkgs; [
-    helix
     zed-editor
     rustup
     cargo
@@ -23,7 +20,7 @@
     enable = true;
     interactiveShellInit = ''
       # Clean greeting
-      set -g fish_greeting
+      set -g fish_greeting ""
 
       # Run fastfetch on login
       fastfetch
@@ -35,9 +32,15 @@
     # Enhanced aliases (clean, useful)
     shellAliases = {
       # System
-      rebuild = "sudo nixos-rebuild switch --flake ~/Documents/GitRepos/nixos-configs#ThinkPad";
-      update = "topgrade";
+      rebuild-t14s = "sudo git -C ~/Documents/GitRepos/nixos-configs pull && sudo nixos-rebuild switch --flake ~/Documents/GitRepos/nixos-configs#ThinkPad";
+      rebuild-r9 = "sudo git -C ~/Documents/GitRepos/nixos-configs pull && sudo nixos-rebuild switch --flake ~/Documents/GitRepos/nixos-configs#Ryzen5900x";
+      rebuild-r7 = "sudo git -C ~/Documents/GitRepos/nixos-configs pull && sudo nixos-rebuild switch --flake ~/Documents/GitRepos/nixos-configs#Ryzen5800x";
+      rebuild-a15 = "sudo git -C ~/Documents/GitRepos/nixos-configs pull && sudo nixos-rebuild switch --flake ~/Documents/GitRepos/nixos-configs#ASUSTuff-A15";
+      rebuild-ad = "sudo git -C ~/Documents/GitRepos/nixos-configs pull && sudo nixos-rebuild switch --flake ~/Documents/GitRepos/nixos-configs#Alex-Desktop";
+      rebuild-al = "sudo git -C ~/Documents/GitRepos/nixos-configs pull && sudo nixos-rebuild switch --flake ~/Documents/GitRepos/nixos-configs#Alex-Laptop";
+      update = "topgrade --only nix --only flatpak --only git_repos";
       cleanup = "sudo nix-collect-garbage -d && nix-collect-garbage -d";
+      generations = "nix profile history --profile /nix/var/nix/profiles/system";
 
       # Navigation
       ".." = "cd ..";
@@ -47,6 +50,7 @@
       home = "cd ~";
       docs = "cd ~/Documents";
       repos = "cd ~/Documents/GitRepos";
+      nconf = "cd ~/Documents/GitRepos/nixos-configs";
 
       # Tools
       ff = "fastfetch";
@@ -70,12 +74,8 @@
       # Fun
       weather = "curl wttr.in";
       moon = "curl wttr.in/Moon";
+      matrix = "cmatrix";
     };
-
-    # Optional: plugins (uncomment when wanted)
-    # plugins = [
-    #   { name = "foreign-env"; src = pkgs.fishPlugins.foreign-env.src; }
-    # ];
   };
 
   # Starship — modern prompt
@@ -104,7 +104,7 @@
         style = "bold yellow";
       };
       nix_shell = {
-        symbol = "❄️ ";
+        symbol = "snowflake ";
         format = "[$symbol]($style)";
       };
       character = {
