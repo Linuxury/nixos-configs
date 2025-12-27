@@ -8,7 +8,6 @@
   
   environment.systemPackages = with pkgs; [
     cosmic-greeter
-    cosmic-store
   ];
 
   # Enable X server only if you need X11 fallback (Wayland preferred)
