@@ -77,10 +77,7 @@
           boot = {
             plymouth = {
               enable = true;
-              theme = "breeze";
-              themePackages = with nixpkgs.legacyPackages.${system}; [
-                breeze-plymouth
-              ];
+              theme = "breeze";  # NixOS automatically provides a branded Breeze theme – no extra packages needed!
             };
 
             consoleLogLevel = 0;
@@ -98,7 +95,7 @@
             ];
           };
 
-          # New way (post-deprecation) to configure systemd manager settings
+          # New way to configure systemd manager settings (watchdog + timeouts)
           systemd.settings.Manager = {
             # Disable watchdogs to prevent "watchdog did not stop!" message
             RuntimeWatchdogSec = "0";
