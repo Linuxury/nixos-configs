@@ -32,11 +32,6 @@ services.gnome.gnome-keyring.enable = true;
 
 # Auto-start nm-applet tray icon in Wayland sessions (works great in COSMIC)
 programs.nm-applet.enable = true;
-
-# If editing the existing systemPackages list:
-environment.systemPackages = with pkgs; [
-  # ... your existing packages like cosmic-store
-  networkmanagerapplet  # Add here
 ];
 
   #########################
@@ -44,6 +39,7 @@ environment.systemPackages = with pkgs; [
   #########################
   environment.systemPackages = with pkgs; [
     cosmic-store
+    networkmanagerapplet
   ];
   services.flatpak.enable = true;
 }
