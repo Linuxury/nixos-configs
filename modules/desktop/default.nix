@@ -12,6 +12,7 @@
     topgrade
     starship
     git
+    gcc
     htop
     gnome-disk-utility  # for managing disks safely
     fluent-reader
