@@ -33,7 +33,12 @@
   programs.fish = {
     enable = true;
     shellAliases = {
-      rebuild = "sudo nixos-rebuild switch --flake ~/Documents/GitRepos/nixos-configs#ThinkPad";
+      rebuild-t14s = "sudo nixos-rebuild switch --flake ~/Documents/GitRepos/nixos-configs#ThinkPad";
+      rebuild-r9 = "sudo nixos-rebuild switch --flake ~/Documents/GitRepos/nixos-configs#Ryzen5900x";
+      rebuild-r7 = "sudo nixos-rebuild switch --flake ~/Documents/GitRepos/nixos-configs#Ryzen5800x";
+      rebuild-a15 = "sudo nixos-rebuild switch --flake ~/Documents/GitRepos/nixos-configs#ASUSTuff-A15";
+      rebuild-ad = "sudo nixos-rebuild switch --flake ~/Documents/GitRepos/nixos-configs#Alex-Desktop";
+      rebuild-al = "sudo nixos-rebuild switch --flake ~/Documents/GitRepos/nixos-configs#Alex-Laptop";
       update  = "topgrade --only nix --only flatpak --only git_repos";
       cleanup = "sudo nix-collect-garbage -d && nix-collect-garbage -d";
       generations = "nix profile history --profile /nix/var/nix/profiles/system";
@@ -44,6 +49,7 @@
       home = "cd ~";
       docs = "cd ~/Documents";
       repos = "cd ~/Documents/GitRepos";
+      nconf = "cd ~/Documents/GitRepos/nixos-configs";
 
       hx = "helix";
       zed = "zed-editor";
