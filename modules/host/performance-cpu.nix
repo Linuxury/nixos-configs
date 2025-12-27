@@ -1,37 +1,31 @@
-{ config, pkgs, lib, ... }:
+{ lib, ... }:
 
 {
   #########################
-  # CPU performance tuning (Intel + AMD)
+  # CPU / VM performance tweaks (desktop/gaming focus)
   #########################
 
-  hardware.cpu.intel.updateMicrocode = true;
-  hardware.cpu.amd.updateMicrocode   = true;
+  # Lower swappiness – prefer RAM over swap on desktops with plenty of memory
+  boot.kernel.sysctl."vm.swappiness" = 10;
 
-  boot.kernelParams = lib.mkForce [
-    "intel_pstate=disable"  # ensures intel governor can be set manually
-  ];
+  # Other common useful sysctls for gaming/performance desktops
+  boot.kernel.sysctl = {
+    # Increase inotify watches (helps with large projects, IDEs, games)
+    "fs.inotify.max_user_watches" = 524288;
 
-  systemd.services."set-cpu-governor" = {
-    description = "Set CPU governor to performance on all cores";
-    after = [ "multi-user.target" ];
-    serviceConfig.Type = "oneshot";
-    serviceConfig.ExecStart = ''
-      for cpu in /sys/devices/system/cpu/cpu[0-9]*; do
-        echo performance > $cpu/cpufreq/scaling_governor
-      done
-    '';
-    wantedBy = [ "multi-user.target" ];
+    # Improve network performance
+    "net.core.rmem_max" = 16777216;
+    "net.core.wmem_max" = 16777216;
+    "net.ipv4.tcp_rmem" = "4096 87380 16777216";
+    "net.ipv4.tcp_wmem" = "4096 65536 16777216";
+    "net.ipv4.tcp_fastopen" = 3;
+    "net.ipv4.tcp_slow_start_after_idle" = 0;
+
+    # Reduce latency
+    "vm.dirty_ratio" = 15;
+    "vm.dirty_background_ratio" = 5;
   };
 
-  vm.swappiness = 10;
-
-  systemd.services."modemmanager.service".enable = lib.mkForce false;
-  systemd.services."cups.service".enable = lib.mkForce false;
-
-  environment.systemPackages = with pkgs; [
-    htop
-    iotop
-    powertop
-  ];
+  # Optional: Enable huge pages (good for some games/apps)
+  # boot.kernelParams = [ "hugepages=4096" ];
 }
