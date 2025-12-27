@@ -249,10 +249,6 @@ Now you can rebuild without Git noise:
 ```bash
 sudo nixos-rebuild switch --flake ~/Documents/GitRepos/nixos-configs#ThinkPad
 ```
-or for a short you could use the allias
-```bash
-rebuild
-```
 
 ## Rollback
 
