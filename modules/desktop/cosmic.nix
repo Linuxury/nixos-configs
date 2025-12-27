@@ -38,12 +38,12 @@
   #########################
   # Enable NetworkManager (fixes WiFi visibility in applets)
   #########################
-  networking.networkmanager.enable = true;  # Correct lowercase 'm'
+  # networking.networkmanager.enable = true;  # Correct lowercase 'm'
 
   #########################
   # Required for nm-applet password prompts/secrets
   #########################
-  services.gnome.gnome-keyring.enable = true;
+  # services.gnome.gnome-keyring.enable = true;
 
   #########################
   # Auto-start nm-applet tray icon (works perfectly in COSMIC/Wayland)
