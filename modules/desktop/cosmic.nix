@@ -27,21 +27,27 @@
   #########################
   services.flatpak.enable = true;
 
+  #########################
+  # COSMIC packages + nm-applet for reliable WiFi
+  #########################
   environment.systemPackages = with pkgs; [
     cosmic-store
-    networkmanagerapplet  # For reliable WiFi tray icon (COSMIC native applet is still buggy)
+    networkmanagerapplet  # Reliable WiFi tray icon (COSMIC native applet is still immature/buggy on unstable)
   ];
 
   #########################
-  # Reliable WiFi management in COSMIC
+  # Enable NetworkManager (fixes WiFi visibility in applets)
   #########################
-  # Ensure NetworkManager is enabled (add if not present elsewhere)
-  networking.networkManager.enable = true;
+  networking.networkmanager.enable = true;  # Correct lowercase 'm'
 
-  # Needed for nm-applet secret/password handling
+  #########################
+  # Required for nm-applet password prompts/secrets
+  #########################
   services.gnome.gnome-keyring.enable = true;
 
-  # Auto-start nm-applet tray indicator (works great on COSMIC/Wayland)
+  #########################
+  # Auto-start nm-applet tray icon (works perfectly in COSMIC/Wayland)
+  #########################
   programs.nm-applet.enable = true;
-  programs.nm-applet.indicator = true;  # Modern indicator style (recommended)
+  programs.nm-applet.indicator = true;  # Modern indicator style (recommended for COSMIC)
 }
