@@ -27,5 +27,5 @@
   };
 
   # Optional: Enable huge pages (good for some games/apps)
-  # boot.kernelParams = [ "hugepages=4096" ];
+  boot.kernelParams = [ "hugepages=4096" ];
 }
