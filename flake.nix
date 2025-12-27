@@ -70,6 +70,12 @@
         # Home Manager integration
         home-manager.nixosModules.home-manager
 
+#########################
+# Enable non-free firmware for Intel WiFi (fixes detection on modern cards)
+#########################
+hardware.enableRedistributableFirmware = true;
+hardware.firmware = [ pkgs.linux-firmware ];  # Latest firmware package
+
         #########################
         # Clean & quiet boot with Plymouth splash + watchdog fixes
         #########################
