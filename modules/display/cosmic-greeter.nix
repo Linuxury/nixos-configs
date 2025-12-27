@@ -4,6 +4,8 @@
   #########################
   # COSMIC Greeter / Session
   #########################
+  services.displayManager.cosmic-greeter.enable = true;  
+  
   environment.systemPackages = with pkgs; [
     cosmic-greeter
     cosmic-store
