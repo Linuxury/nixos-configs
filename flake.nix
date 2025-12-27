@@ -95,9 +95,9 @@
             ];
           };
 
-          # Critical fix for your ThinkPad T14s Gen 4 Intel WiFi card detection
+          # Critical fix for ThinkPad T14s Gen 4 Intel WiFi detection (AX211/AX210/BE200)
           hardware.enableRedistributableFirmware = true;
-          hardware.firmware = [ pkgs.linux-firmware ];
+          hardware.firmware = [ nixpkgs.legacyPackages.${system}.linux-firmware ];
 
           systemd.settings.Manager = {
             RuntimeWatchdogSec = "0";
