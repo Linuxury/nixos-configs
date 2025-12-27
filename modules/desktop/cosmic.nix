@@ -48,6 +48,6 @@
   #########################
   # Auto-start nm-applet tray icon (works perfectly in COSMIC/Wayland)
   #########################
-  programs.nm-applet.enable = true;
-  programs.nm-applet.indicator = true;  # Modern indicator style (recommended for COSMIC)
+  # programs.nm-applet.enable = true;
+  # programs.nm-applet.indicator = true;  # Modern indicator style (recommended for COSMIC)
 }
