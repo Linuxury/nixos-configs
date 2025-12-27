@@ -1,6 +1,9 @@
 {
   description = "My modular multi-host NixOS flake";
 
+  #########################
+  # Inputs
+  #########################
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     home-manager = {
@@ -15,6 +18,9 @@
     let
       system = "x86_64-linux";
 
+      #########################
+      # Host-specific module paths
+      #########################
       hostModules = {
         #########################
         # Hardware configuration
@@ -57,12 +63,16 @@
         snapper = ./modules/snapper.nix;
       };
 
-      # Shared modules applied to EVERY host
+      #########################
+      # Common modules applied to ALL hosts
+      #########################
       commonModules = [
         # Home Manager integration
         home-manager.nixosModules.home-manager
 
-        # Clean, quiet boot + watchdog fixes
+        #########################
+        # Clean & quiet boot with Plymouth splash + watchdog fixes
+        #########################
         {
           boot = {
             plymouth = {
@@ -90,74 +100,66 @@
 
           systemd = {
             extraConfig = ''
+              # Disable watchdogs to prevent "watchdog did not stop!" message
+              RuntimeWatchdogSec=0
+              RebootWatchdogSec=0
+              KExecWatchdogSec=0
+
+              # Speed up shutdown by reducing service stop timeout
               DefaultTimeoutStopSec=10s
             '';
 
-            watchdogs = {
-              runtimeWatchdogSec = 0;
-              rebootWatchdogSec = 0;
-            };
-
+            # Prevent NetworkManager from delaying shutdown
             services.NetworkManager-wait-online.enable = false;
           };
         }
       ];
 
     in {
+
+      #########################
+      # NixOS Configurations (all hosts)
+      #########################
       nixosConfigurations = {
         ThinkPad = nixpkgs.lib.nixosSystem {
           inherit system;
-          specialArgs = {
-            inherit self hyprland niri home-manager hostModules;
-          };
+          specialArgs = { inherit self hyprland niri home-manager hostModules; };
           modules = commonModules ++ [ ./hosts/ThinkPad.nix ];
         };
 
         Ryzen5900x = nixpkgs.lib.nixosSystem {
           inherit system;
-          specialArgs = {
-            inherit self hyprland niri home-manager hostModules;
-          };
+          specialArgs = { inherit self hyprland niri home-manager hostModules; };
           modules = commonModules ++ [ ./hosts/Ryzen5900x.nix ];
         };
 
         Ryzen5800x = nixpkgs.lib.nixosSystem {
           inherit system;
-          specialArgs = {
-            inherit self hyprland niri home-manager hostModules;
-          };
+          specialArgs = { inherit self hyprland niri home-manager hostModules; };
           modules = commonModules ++ [ ./hosts/Ryzen5800x.nix ];
         };
 
         ASUSTuff-A15 = nixpkgs.lib.nixosSystem {
           inherit system;
-          specialArgs = {
-            inherit self hyprland niri home-manager hostModules;
-          };
+          specialArgs = { inherit self hyprland niri home-manager hostModules; };
           modules = commonModules ++ [ ./hosts/ASUSTuff-A15.nix ];
         };
 
         Alex-Desktop = nixpkgs.lib.nixosSystem {
           inherit system;
-          specialArgs = {
-            inherit self hyprland niri home-manager hostModules;
-          };
+          specialArgs = { inherit self hyprland niri home-manager hostModules; };
           modules = commonModules ++ [ ./hosts/Alex-Desktop.nix ];
         };
 
         Alex-Laptop = nixpkgs.lib.nixosSystem {
           inherit system;
-          specialArgs = {
-            inherit self hyprland niri home-manager hostModules;
-          };
+          specialArgs = { inherit self hyprland niri home-manager hostModules; };
           modules = commonModules ++ [ ./hosts/Alex-Laptop.nix ];
         };
 
         generic = nixpkgs.lib.nixosSystem {
           inherit system;
-          specialArgs = {
-            inherit self hyprland niri home-manager hostModules;
-          };
+          specialArgs = { inherit self hyprland niri home-manager hostModules; };
           modules = commonModules ++ [ ./hosts/generic.nix ];
         };
       };
